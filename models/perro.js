@@ -31,7 +31,39 @@ const getBySize = (tamanoPerro) => {
     });
 };
 
+//para crear un nuevo perro
+const create = ({ raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora }) => {
+    return new Promise((resolve, reject) => {
+        db.query('INSERT INTO protectora.perros (raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora) values(?,?,?,?,?,?,?,?,?,?,?,?)', [raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora], (error, result) => {
+            if (error) reject(error);
+            resolve(result);
+        })
+    });
+};
+
+
+const deleteById = (pPerroId) => {
+    return new Promise((resolve, reject) => {
+        db.query('delete from perros where id = ?', [pPerroId], (error, result) => {
+            if (error) reject(error);
+            resolve(result);
+        });
+    });
+}
+
+const updateById = (pPerroId, { raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora }) => {
+    return new Promise((resolve, reject) => {
+        db.query('update perros set raza=?, edad=?, tamano=?, edad_numero=?, sexo=?, apto_gatos=?, leishmania=?, localizacion=?, descripcion=?, imagen=?, nombre_perro=?, fk_protectora=? where id=?', [raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora, pPerroId], (error, result) => {
+            if (error) reject(error);
+            resolve(result);
+        });
+    })
+}
+
+
+
+
 module.exports = {
-    getAll, getByAge, getBySize
+    getAll, getByAge, getBySize, create, deleteById, updateById
 }
 

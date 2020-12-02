@@ -2,4 +2,47 @@ GET http://localhost:3000/api/perros
 
 ###
 
+POST http://localhost:3000/api/perros/crear
+Content-Type: application/json
+
+{
+    "raza":"Prueba de insercion",
+    "edad":"cachorro",
+    "tamano":"mediano",
+    "edad_numero":1,
+    "sexo":"hembra",
+    "apto_gatos":"si",
+    "leishmania":"negativo",
+    "localizacion":"albergue",
+    "descripcion":"el más bonito",
+    "imagen":"imagen",
+    "nombre_perro":"PRUEBA",
+    "fk_protectora":1
+
+}
+
+###
+
+PUT http://localhost:3000/api/perros/33
+Content-Type: application/json
+
+{
+    "raza":"UPDATE",
+    "edad":"cachorro",
+    "tamano":"grande",
+    "edad_numero":2,
+    "sexo":"hembra",
+    "apto_gatos":"no",
+    "leishmania":"positivo",
+    "localizacion":"albergue",
+    "descripcion":"me han modificado",
+    "imagen":"imagen",
+    "nombre_perro":"modificacion",
+    "fk_protectora":1
+
+}
+
+###
+
+DELETE http://localhost:3000/api/perros/34
 
