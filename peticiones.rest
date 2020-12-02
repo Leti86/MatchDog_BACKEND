@@ -1,0 +1,22 @@
+GET http://localhost:3000/api/protectoras
+
+###
+POST http://localhost:3000/api/protectoras
+Content-Type: application/json
+
+{
+    "nombre": "leti",
+    "email": "leti",
+    "telefono": 1,
+    "direccion": "leti",
+    "localidad": "leti",
+    "provincia": "leti",
+    "latitud": 1,
+    "longitud": 1,
+    "necesidad_voluntarios": "alta",
+    "imagen": "leti",
+    "comentarios": "leti"
+
+}
+
+
