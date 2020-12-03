@@ -13,6 +13,8 @@ router.get('/', async (req, res) => {
     }
 });
 
+
+
 // Creo una protectora // ! Faltan validaciones y comprobaciones
 
 router.post('/', async (req, res) => {
