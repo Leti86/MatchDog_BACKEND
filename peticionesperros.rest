@@ -2,6 +2,14 @@ GET http://localhost:3000/api/perros
 
 ###
 
+GET http://localhost:3000/api/perros/cachorro
+
+###
+
+GET http://localhost:3000/api/perros/cachorro/grande
+
+###
+
 POST http://localhost:3000/api/perros/crear
 Content-Type: application/json
 
@@ -23,7 +31,7 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/api/perros/35
+PUT http://localhost:3000/api/perros/36
 Content-Type: application/json
 
 {
@@ -45,5 +53,5 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/perros/35
+DELETE http://localhost:3000/api/perros/36
 
