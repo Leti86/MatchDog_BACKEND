@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { getAll, getByAge, getBySize, create, deleteById, updateById } = require('../../models/perro');
+const { getAll, getById, getByAge, getBySize, create, deleteById, updateById } = require('../../models/perro');
 let perrosFiltradosEdad = [];
 let perrosFiltradosEdadTamano = [];
 
@@ -57,12 +57,12 @@ router.post('/crear', [
     res.json(result);
 });
 
-//actualizar el perro da error, fix it
-router.put('/:perroId', async (req, res) => {
+//actualizar el perro funciona
+router.put('/:idPerro', async (req, res) => {
     try {
-        const result = await updateById(req.body.perroId, req.body);
+        const result = await updateById(req.params.idPerro, req.body);
         if (result.affectedRows === 1) {
-            const perroActualizado = await getById(req.body.clienteId);
+            const perroActualizado = await getById(req.params.idPerro);
             res.json(perroActualizado);
         } else {
             res.json({ error: 'No se ha podido actualizar' });
@@ -73,10 +73,10 @@ router.put('/:perroId', async (req, res) => {
 });
 
 
-//eliminar el perro tampoco funciona
-router.delete('/delete/:perroId', async (req, res) => {
+//eliminar el perro funciona
+router.delete('/:idPerro', async (req, res) => {
     try {
-        const result = await deleteById(req.params.perroId);
+        const result = await deleteById(req.params.idPerro);
         if (result.affectedRows === 1) {
             res.json({ mensaje: 'Se ha borrado correctamente' });
         } else {

@@ -8,6 +8,16 @@ const getAll = () => {
     });
 };
 
+//obtiene un perro por ID
+const getById = (perroId) => {
+    return new Promise((resolve, reject) => {
+        db.query('select * from protectora.perros as p where p.id=?', [perroId], (error, rows) => {
+            if (error) reject(error);
+            resolve(rows);
+        });
+    });
+};
+
 
 
 //primer filtro: obtiene los perros por edad: adulto o cachorro
@@ -21,7 +31,7 @@ const getByAge = (edadPerro) => {
 };
 
 
-//segundo filtro: obtiene los perros por tamaño: pequeño, mediano, grande
+//segundo filtro, depende del primero: obtiene los perros por tamaño: pequeño, mediano, grande
 const getBySize = (tamanoPerro) => {
     return new Promise((resolve, reject) => {
         db.query('select p.nombre_perro, p.raza, p.edad_numero, p.sexo, lp.nombre, lp.provincia, lp.localidad from protectora.perros as p, protectora.lista_protectoras as lp where p.fk_protectora = lp.id and tamano=?', [tamanoPerro], (error, rows) => {
@@ -42,28 +52,31 @@ const create = ({ raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania,
 };
 
 
-const deleteById = (pPerroId) => {
-    return new Promise((resolve, reject) => {
-        db.query('delete from perros where id = ?', [pPerroId], (error, result) => {
-            if (error) reject(error);
-            resolve(result);
-        });
-    });
-}
 
-const updateById = (pPerroId, { raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora }) => {
+//actualizar por id no funciona
+const updateById = (idPerro, { raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora }) => {
     return new Promise((resolve, reject) => {
-        db.query('update perros set raza=?, edad=?, tamano=?, edad_numero=?, sexo=?, apto_gatos=?, leishmania=?, localizacion=?, descripcion=?, imagen=?, nombre_perro=?, fk_protectora=? where id=?', [raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora, pPerroId], (error, result) => {
+        db.query('update perros set raza=?, edad=?, tamano=?, edad_numero=?, sexo=?, apto_gatos=?, leishmania=?, localizacion=?, descripcion=?, imagen=?, nombre_perro=?, fk_protectora=? where id=?', [raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora, idPerro], (error, result) => {
             if (error) reject(error);
             resolve(result);
         });
     })
-}
+};
+
+//eliminar por id funciona
+const deleteById = (idPerro) => {
+    return new Promise((resolve, reject) => {
+        db.query('delete from perros where id = ?', [idPerro], (error, result) => {
+            if (error) reject(error);
+            resolve(result);
+        });
+    });
+};
 
 
 
 
 module.exports = {
-    getAll, getByAge, getBySize, create, deleteById, updateById
+    getAll, getById, getByAge, getBySize, create, deleteById, updateById
 }
 
