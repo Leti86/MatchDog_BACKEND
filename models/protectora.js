@@ -40,6 +40,20 @@ const getById = (pIdProtectora) => {
     });
 };
 
+const getByNeedForVolunteers = (pNecesidadVoluntarios) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'select lp.nombre, lp.email, lp.telefono, lp.direccion, lp.localidad, lp.provincia from protectora.lista_protectoras as lp where necesidad_voluntarios = ?',
+            [pNecesidadVoluntarios],
+            (error, rows) => {
+                if (error) reject(error);
+                resolve(rows);
+            }
+
+        )
+    });
+};
+
 
 const deleteById = (pIdProtectora) => {
     return new Promise((resolve, reject) => {
@@ -70,5 +84,5 @@ const updateById = (pIdProtectora, { nombre, email, telefono, direccion, localid
 
 
 module.exports = {
-    getAll, create, getById, deleteById, updateById
+    getAll, create, getById, deleteById, updateById, getByNeedForVolunteers
 };

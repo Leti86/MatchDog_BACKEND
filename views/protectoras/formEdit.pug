@@ -1,0 +1,53 @@
+extends ../layout.pug
+
+block content
+    h2 Edita el cliente
+    form(method='POST', action="/protectoras/update")
+        .form-group
+            label Nombre
+            input.form-control(type="text", name="nombre", value=protectora.nombre)
+        .form-group
+            label Email
+            input.form-control(type="text", name="email", value=protectora.email) 
+        .form-group
+            label Telefono
+            input.form-control(type="text", name="telefono", value=protectora.telefono)
+        .form-group
+            label Direccion
+            input.form-control(type="text", name="direccion", value=protectora.direccion)
+        .form-group
+            label Localidad
+            input.form-control(type="text", name="localidad", value=protectora.localidad)
+        .form-group
+            label Provincia
+            input.form-control(type="text", name="provincia", value=protectora.provincia)
+        .form-group
+            label Latitud
+            input.form-control(type="number", name="latitud", value=protectora.latitud)
+        .form-group
+            label Longitud
+            input.form-control(type="number", name="longitud", value=protectora.latitud)
+        .form-group
+            label Necesidad de voluntarios
+            div.col-sm-10
+                div.form-check
+                    input.form-check-input(type="radio" name="necesidad_voluntarios" value=protectora.necesidad_voluntarios)
+                    label.form-check-label ALTA
+                div.form-check
+                    input.form-check-input(type="radio" name="necesidad_voluntarios" value=protectora.necesidad_voluntarios)
+                    label.form-check-label MEDIA
+                div.form-check
+                    input.form-check-input(type="radio" name="necesidad_voluntarios" value=protectora.necesidad_voluntarios)
+                    label.form-check-label BAJA
+        .form-group
+            label Imagen
+            input.form-control(type="text", name="imagen", value=protectora.imagen)
+        .form-group
+            label Comentarios
+            textarea.form-control(type="text", name="comentarios", value=protectora.comentarios)
+
+        input(type="hidden", name="IdProtectora", value=protectora.id) 
+        input.btn.btn-block.btn-info(type="submit", value="Enviar")
+            
+        
+
