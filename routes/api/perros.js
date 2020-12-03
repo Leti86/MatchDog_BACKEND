@@ -1,8 +1,8 @@
 const router = require('express').Router();
 
-const { getAllDog, getByIdDog, getByAgeDog, getBySizeDog, createDog, deleteByIdDog, updateByIdDog } = require('../../models/perro');
-let perrosFiltradosEdad = [];
-let perrosFiltradosEdadTamano = [];
+const { getAllDog, getByIdDog, getByAgeDog, getBySizeDog, createDog, deleteByIdDog, updateByIdDog, getByAgeAndSizeDog } = require('../../models/perro');
+
+
 
 //la petición general funciona bien
 router.get('/', async (req, res) => {
@@ -16,32 +16,34 @@ router.get('/', async (req, res) => {
 });
 
 //la petición por edad funciona bien
-router.get('/:edad', async (req, res) => {
+router.get('/edad/:edad', async (req, res) => {
     try {
-        perrosFiltradosEdad = await getByAgeDog(req.params.edad);
+        const perrosFiltradosEdad = await getByAgeDog(req.params.edad);
         res.json(perrosFiltradosEdad);
     } catch (error) {
         res.json({ error: error.message });
     }
 });
 
+// Filtro por tamaño
+router.get('/tamano/:tamano', async (req, res) => {
+    const perrosFiltradosTamano = await getBySizeDog(req.params.tamano);
+    res.json(perrosFiltradosTamano);
+});
+
+
+
+
 //la petición por edad y tamaño funciona bien (filtra por tamaño el array que devuelve los perros por edad)
 router.get('/:edad/:tamano', async (req, res) => {
     try {
-        const perrosFiltradosTamano = await getBySizeDog(req.params.tamano);
-        for (let perroEdad of perrosFiltradosEdad) {
-            for (let perroTamano of perrosFiltradosTamano) {
-                if (perroEdad.nombre_perro == perroTamano.nombre_perro) {
-                    perrosFiltradosEdadTamano.push(perroTamano);
-                }
-            }
-        }
-        res.json(perrosFiltradosEdadTamano);
-
+        const perrosFiltro = await getByAgeAndSizeDog(req.params.edad, req.params.tamano);
+        res.json(perrosFiltro);
     } catch (error) {
-        res.json({ error: error.message });
+        res.json({ error: error.mensaje });
     }
 });
+
 
 
 //crear un nuevo perro (funciona pero dice la consola algo de los headers)

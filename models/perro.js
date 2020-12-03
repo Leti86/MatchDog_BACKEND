@@ -41,6 +41,22 @@ const getBySizeDog = (tamanoPerro) => {
     });
 };
 
+const getByAgeAndSizeDog = (edadPerro, tamanoPerro) => {
+    return new Promise((resolve, reject) => {
+        db.query('select p.nombre_perro, p.raza, p.edad_numero, p.sexo, lp.nombre, lp.provincia, lp.localidad from protectora.perros as p, protectora.lista_protectoras as lp where p.fk_protectora = lp.id and edad=? and tamano=?',
+            [edadPerro, tamanoPerro],
+            (error, rows) => {
+                if (error) reject(error);
+                resolve(rows);
+            }
+
+        )
+    });
+
+
+
+};
+
 //para crear un nuevo perro
 const createDog = ({ raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora }) => {
     return new Promise((resolve, reject) => {
@@ -77,6 +93,6 @@ const deleteByIdDog = (idPerro) => {
 
 
 module.exports = {
-    getAllDog, getByIdDog, getByAgeDog, getBySizeDog, createDog, deleteByIdDog, updateByIdDog
+    getAllDog, getByIdDog, getByAgeDog, getBySizeDog, createDog, deleteByIdDog, updateByIdDog, getByAgeAndSizeDog
 }
 
