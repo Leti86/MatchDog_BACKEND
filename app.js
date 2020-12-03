@@ -5,6 +5,7 @@ const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const cors = require('cors');
 
+<<<<<<< HEAD
 // ! CONEXION CON BBDD
 
 const mysql = require('mysql');
@@ -20,6 +21,13 @@ const app = express();
 
 
 app.use((cors()));
+=======
+var indexRouter = require('./routes/index');
+var usersRouter = require('./routes/users');
+var apiRouter = require('./routes/api');
+require('./dbConfig').createPool();
+var app = express();
+>>>>>>> fe45c37779db9fa368707f8b0dbcc295c887448a
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
