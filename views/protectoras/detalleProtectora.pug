@@ -1,0 +1,17 @@
+extends ../layout.pug
+
+block content
+    if protectora
+        .protectora
+            h3= protectora.nombre 
+            p Email:  #{protectora.email}
+            p Telefono:  #{protectora.telefono}
+            p Direccion:  #{protectora.direccion}
+            p Localidad:  #{protectora.localidad}
+            p Provincia:  #{protectora.provincia}
+            p Necesidad de voluntarios:  #{protectora.necesidad_voluntarios}
+            p Comentarios:  #{protectora.comentarios}
+            
+
+    else
+        p La protectora no existe

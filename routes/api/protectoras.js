@@ -1,24 +1,36 @@
 const router = require('express').Router();
-const { getAll, create, getById, getByNeedForVolunteers } = require('../../models/protectora');
-const { getByIdDog } = require('../../models/perro');
-
-
+const { getAll, create, getById, getByNeedForVolunteers, getByDogProtectora, updateById, deleteById } = require('../../models/protectora');
 
 // Recupero todas las protectoras
 router.get('/', async (req, res) => {
     try {
         const rows = await getAll()
-        res.json(rows);
+        res.render('protectoras/listadoProtectoras', { protectoras: rows });
     } catch (error) {
         res.json({ error: error.message });
     }
 });
 
-// Recupero los perros de cada protectora // ! Me devuellve array de perros vacio
+// Recupero datos por ID protectora
+router.get('/:IdProtectora', async (req, res) => {
+    try {
+        const IdProtectora = req.params.IdProtectora;
+        const protectora = await getById(IdProtectora);
+        res.render('protectoras/detalleProtectora', { protectora });
+    } catch (error) {
+        res.json({
+            error: error.message
+        })
+    }
+
+});
+
+
+// Recupero los perros de cada protectora // ! Me devuellve array con TODOS los perros
 router.get('/:IdProtectora/perros', async (req, res) => {
     try {
         const protectora = await getById(req.params.IdProtectora);
-        const rows = await getByIdDog(req.params.idPerro);
+        const rows = await getByDogProtectora(req.params.IdProtectora);
         protectora.perros = rows;
         res.json(protectora);
     } catch (error) {
@@ -41,21 +53,63 @@ router.get('/necesidad/:necesidad', async (req, res) => {
     }
 });
 
-// Editamos una protectora 
+// Editamos una protectora //! No me aperecen ni los comentarios ni la necesitadad. REVISAR!!!
 router.get('/edita/:IdProtectora', async (req, res) => {
-    const IdProtectora = req.params.IdProtectora;
-    const protectora = await getById(IdProtectora);
-    res.render('protectoras/formEdit', { protectora });
+    try {
+        const IdProtectora = req.params.IdProtectora;
+        const protectora = await getById(IdProtectora);
+        res.render('protectoras/formEdit', { protectora });
+    } catch (error) {
+        res.json({
+            error: error.message
+        })
+    }
 });
 
-// TODO: me he quedado aqui. EN editar el formulario
+// Eliminamos protectora
+router.get('/borrar/:IdProtectora', async (req, res) => {
+    try {
+        const IdProtectora = req.params.IdProtectora;
+        const result = await deleteById(IdProtectora);
+        console.log(result);
+        res.redirect('/api/protectoras');
+    } catch (error) {
+        res.json({
+            error: error.message
+        })
+    }
+
+});
+
+
+// Modificamos datos de la protectrora //! no funciona cuando enviamos los datos
+router.put('/update', async (req, res) => {
+    try {
+        const result = await updateById(req.body.IdProtectora, req.body);
+        console.log(result);
+        res.redirect('/api/protectoras/' + req.body.IdProtectora);
+    } catch (error) {
+        res.json({
+            error: error.message
+        })
+    }
+
+});
+
+
 
 
 
 // Creo una protectora // ! Faltan validaciones y comprobaciones
 router.post('/', async (req, res) => {
-    const result = await create(req.body);
-    res.json(result);
+    try {
+        const result = await create(req.body);
+        res.json(result);
+    } catch (error) {
+        res.json({
+            error: error.message
+        })
+    }
 });
 
 

@@ -1,0 +1,48 @@
+extends ../layout.pug
+
+block content
+    .container
+        h1 Lista de protectoras
+        table.table 
+            thead   
+                tr
+                    th Indice
+                    th ID
+                    th Nombre
+                    th Email
+                    th Telefono
+                    th Direccion 
+                    th Localidad
+                    th Provincia
+                    th Necesidad de Voluntarios
+                    th Comentarios                   
+                    th Acciones
+            tbody
+                each protectora, index in protectoras
+                    tr
+                        td= index+1
+                        td= protectora.id
+                        td= protectora.nombre
+                        td= protectora.email
+                        td= protectora.telefono
+                        td= protectora.direccion
+                        td= protectora.localidad
+                        td= protectora.provincia
+                        td= protectora.necesidad_voluntarios
+                        td= protectora.comenttarios                        
+                        td
+                            a.btn.btn-sm.btn-dark(href="/api/protectoras/"+protectora.id) Ver 
+                            a.btn.btn-sm.btn-success(href="/api/protectoras/edita/"+protectora.id) Edita 
+                            a.btn.btn-sm.btn-danger(href="/api/protectoras/borrar/"+protectora.id, onClick="return confirm('¿Estas seguro de  eliminar esta protectora?')") Borrar
+                            
+                                
+
+                        
+
+
+
+
+
+
+
+        

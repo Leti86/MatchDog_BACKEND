@@ -10,6 +10,8 @@ const getAll = () => {
     });
 };
 
+
+// Creamos una nueva protectora
 const create = ({ nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios }) => {
     return new Promise((resolve, reject) => {
         db.query(
@@ -25,7 +27,7 @@ const create = ({ nombre, email, telefono, direccion, localidad, provincia, lati
 
 }
 
-
+// Filtramos por ID de protectora
 const getById = (pIdProtectora) => {
     return new Promise((resolve, reject) => {
         db.query(
@@ -40,6 +42,24 @@ const getById = (pIdProtectora) => {
     });
 };
 
+
+// Perros de cada protectora
+const getByDogProtectora = (pIdProtectora) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'select lp.*, p.* from protectora.lista_protectoras as lp, protectora.perros as p where p.fk_protectora = lp.id',
+            [pIdProtectora],
+            (error, rows) => {
+                if (error) reject(error);
+                resolve(rows);
+            }
+        )
+    });
+}
+
+
+
+// Filtramos por la necesidad de voluntarios de una protectora
 const getByNeedForVolunteers = (pNecesidadVoluntarios) => {
     return new Promise((resolve, reject) => {
         db.query(
@@ -54,7 +74,7 @@ const getByNeedForVolunteers = (pNecesidadVoluntarios) => {
     });
 };
 
-
+// Eliminamos protectoras
 const deleteById = (pIdProtectora) => {
     return new Promise((resolve, reject) => {
         db.query(
@@ -68,10 +88,12 @@ const deleteById = (pIdProtectora) => {
     });
 };
 
+
+// Modificamos datos de una protectora
 const updateById = (pIdProtectora, { nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios }) => {
     return new Promise((resolve, reject) => {
         db.query('UPDATE protectora.lista_protectoras SET nombre = ?, email = ?, telefono=?, direccion = ?, localidad = ?, provincia = ?, latitud = ?, longitud= ?, necesidad_voluntarios = ?, imagen= ?, comentarios= ? WHERE id = ?',
-            [nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios],
+            [nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios, pIdProtectora],
             (error, result) => {
                 if (error) reject(error);
                 resolve(result);
@@ -84,5 +106,5 @@ const updateById = (pIdProtectora, { nombre, email, telefono, direccion, localid
 
 
 module.exports = {
-    getAll, create, getById, deleteById, updateById, getByNeedForVolunteers
+    getAll, create, getById, deleteById, updateById, getByNeedForVolunteers, getByDogProtectora
 };
