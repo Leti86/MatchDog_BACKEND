@@ -1,0 +1,27 @@
+extends layout.pug
+
+block content
+    h2 Lista de perros
+        table(class="table")
+            thead
+                th Nombre
+                th Raza
+                th Sexo
+                th Años
+                th Protectora
+                th Acciones
+                
+            tbody
+                each perro, index in perros
+                    tr
+                        td= perro.nombre_perro
+                        td= perro.raza
+                        td= perro.sexo
+                        td= perro.edad_numero
+                        td= perro.nombre
+                        //- td= input(type="submit" value="Editar") DA ERROR, NO DEJA PONER BOTONES
+                        
+                else
+                    tr
+                        td(colspan=12) No existen perros
+

@@ -31,7 +31,7 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/api/perros/36
+PUT http://localhost:3000/api/perros/37
 Content-Type: application/json
 
 {

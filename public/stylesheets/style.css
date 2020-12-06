@@ -6,3 +6,13 @@ body {
 a {
   color: #00B7FF;
 }
+
+
+table{
+  margin-top: 40px;
+  font: 20px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+
+form{
+  margin-top: 40px;
+}
