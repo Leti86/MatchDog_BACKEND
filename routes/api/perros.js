@@ -15,7 +15,7 @@ router.get('/', async (req, res) => {
     }
 });
 
-//la petición por edad funciona bien /edad/:edad'
+//la petición por edad funciona bien
 router.get('/edad/:edad', async (req, res) => {
     try {
         const perrosFiltradosEdad = await getByAgeDog(req.params.edad);
@@ -25,7 +25,7 @@ router.get('/edad/:edad', async (req, res) => {
     }
 });
 
-// Filtro por tamaño /tamano/:tamano
+// Filtro por tamaño
 router.get('/tamano/:tamano', async (req, res) => {
     const perrosFiltradosTamano = await getBySizeDog(req.params.tamano);
     res.json(perrosFiltradosTamano);

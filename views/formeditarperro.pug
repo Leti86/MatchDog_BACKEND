@@ -1,0 +1,51 @@
+extends layout.pug
+
+block content
+    h2 Formulario de edición de perros registrados
+    form
+        div(class="form-group")
+            label Nombre del perro
+            input(class="form-control")
+        div(class="form-group")
+            label Raza
+            input(class="form-control")
+        div(class="form-group")
+            label Sexo
+            input(class="form-control")
+        div(class="form-group")
+            label Edad en años (de 0 en adelante)
+            input(class="form-control")
+        div(class="form-group")
+            label Clasificación: cachorro o adulto
+            select(class="form-control")
+                option(value="cachorro") Cachorro
+                option(value="adulto") Adulto
+        div(class="form-group")
+            label Tamaño: pequeño, mediano o grande
+            select(class="form-control")
+                option(value="pequeno") Pequeño
+                option(value="mediano") Mediano
+                option(value="grande") Grande
+        div(class="form-group")
+            label Leishmania
+            select(class="form-control")
+                option(value="pequeno") Positivo
+                option(value="mediano") Negativo
+        div(class="form-group")
+            label Apto con gatos
+            select(class="form-control")
+                option(value="si") Si
+                option(value="no") No
+                option(value="nt") No testado
+        div(class="form-group")
+            label Localización
+            select(class="form-control")
+                option(value="albergue") En el albergue
+                option(value="acogida") En casa de acogida
+        div(class="form-group")
+            label Descripción
+            input(class="form-control")
+        div(class="form-group")
+            label Imagen
+            input(class="form-control")
+        input(type="button", value="Enviar", class="btn btn-dark btn-lg btn-block")
