@@ -12,12 +12,12 @@ router.get('/', function (req, res, next) {
 
 //formulario de alta de nuevo perro
 router.get('/alta', function (req, res, next) {
-  res.render('formaltaperro', { title: 'alta' });
+  res.render('formaltaperro');
 });
 
 //formulario de edición de la info del perro
 router.get('/editar', function (req, res, next) {
-  res.render('formeditarperro', { title: 'editar' });
+  res.render('formeditarperro');
 });
 
 //lista completa de perros

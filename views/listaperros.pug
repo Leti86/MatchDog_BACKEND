@@ -10,6 +10,7 @@ block content
                 th Años
                 th Protectora
                 th Acciones
+                
             tbody
                 each perro, index in perros
                     tr
@@ -18,7 +19,8 @@ block content
                         td= perro.sexo
                         td= perro.edad_numero
                         td= perro.nombre
-                        td= 'botones aqui'
+                        //- td= input(type="submit" value="Editar") DA ERROR, NO DEJA PONER BOTONES
+                        
                 else
                     tr
                         td(colspan=12) No existen perros
