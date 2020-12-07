@@ -82,9 +82,10 @@ router.get('/borrar/:IdProtectora', async (req, res) => {
 });
 
 
-// Modificamos datos de la protectrora //! no funciona cuando enviamos los datos
-router.put('/update', async (req, res) => {
+// Modificamos datos de la protectrora
+router.post('/update', async (req, res) => {
     try {
+        //console.log(req.body);
         const result = await updateById(req.body.IdProtectora, req.body);
         console.log(result);
         res.redirect('/api/protectoras/' + req.body.IdProtectora);

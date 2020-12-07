@@ -2,7 +2,7 @@ extends ../layout.pug
 
 block content
     h2 Edita el cliente
-    form(method='POST', action="/protectoras/update")
+    form(method='POST', action="/api/protectoras/update")
         .form-group
             label Nombre
             input.form-control(type="text", name="nombre", value=protectora.nombre)
