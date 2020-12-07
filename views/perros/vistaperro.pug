@@ -1,0 +1,19 @@
+extends ../layout.pug
+
+block content
+    if perro
+        .perro
+            h3= perro.nombre_perro
+            p Raza:  #{perro.raza}
+            p Edad:  #{perro.edad}
+            p Años:  #{perro.edad_numero}
+            p Sexo:  #{perro.sexo}
+            p Tamaño:  #{perro.tamano}
+            p Apto con gatos:  #{perro.apto_gatos}
+            p Leishmania:  #{perro.leishmania}
+            p Localizacion: #{perro.localizacion}
+            p Descripcion: #{perro.descripcion}
+            
+
+    else
+        p El perro no existe

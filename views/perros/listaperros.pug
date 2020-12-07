@@ -1,4 +1,4 @@
-extends layout.pug
+extends ../layout.pug
 
 block content
     h2 Lista de perros
@@ -19,7 +19,10 @@ block content
                         td= perro.sexo
                         td= perro.edad_numero
                         td= perro.nombre
-                        //- td= input(type="submit" value="Editar") DA ERROR, NO DEJA PONER BOTONES
+                        td
+                            a.btn.btn-sm.btn-dark(href="/api/perros/"+perro.id) Ver 
+                            a.btn.btn-sm.btn-success(href="/api/perros/editar/"+perro.id) Editar 
+                            a.btn.btn-sm.btn-danger(href="/api/perros/borrar/"+perro.id, onClick="return confirm('¿Estás seguro de  eliminar este perro?')") Borrar
                         
                 else
                     tr

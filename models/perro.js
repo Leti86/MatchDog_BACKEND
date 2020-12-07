@@ -70,7 +70,7 @@ const createDog = ({ raza, edad, tamano, edad_numero, sexo, apto_gatos, leishman
 
 
 
-//actualizar por id no funciona
+//actualizar por id funciona??
 const updateByIdDog = (idPerro, { raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora }) => {
     return new Promise((resolve, reject) => {
         db.query('update perros set raza=?, edad=?, tamano=?, edad_numero=?, sexo=?, apto_gatos=?, leishmania=?, localizacion=?, descripcion=?, imagen=?, nombre_perro=?, fk_protectora=? where id=?', [raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora, idPerro], (error, result) => {

@@ -1,8 +1,8 @@
-extends layout.pug
-
+extends ../layout.pug
+ //- este formulario no funciona, no logro que cree perros en la bbdd (error 404). tampoco funciona el de edición.
 block content
-    h2 Formulario de edición de perros registrados
-    form(action="api/perros/:perroId", method="")
+    h2 Formulario de alta de un nuevo perro
+    form(action="api/perros/crear", method="post")
         div(class="form-group")
             label Nombre del perro
             input(class="form-control")
@@ -50,4 +50,7 @@ block content
         div(class="form-group")
             label Imagen
             input(class="form-control")
-        input(type="submit", value="Enviar", class="btn btn-dark btn-lg btn-block")
+        input(type="submit" value="Enviar" class="btn btn-dark btn-lg btn-block")
+                
+               
+        
