@@ -1,8 +1,9 @@
 //obtiene a todos los perros con su protectora, ciudad y provincia
 //ATENCIÓN: HE MODIFICADO LAS QUERYS DE GET DOGS PARA RECUPERAR P.IMAGEN, SI NO NO SE PUEDEN IMPRIMIR EN EL FRONT LAS IMÁGENES DE LOS PERROS
+//ATENCIÓN: HE VUELTO A MODIFICAR LAS QUERYS GETALLDOG PARA RECUPERAR P.ID, SI NO NO FUNCIONA EN EL BACK LOS BOTONES DE  LA LISTA DE PERROS EN LA VISTA DE PUG DE LISTAPERROS
 const getAllDog = () => {
     return new Promise((resolve, reject) => {
-        db.query('select p.nombre_perro, p.raza, p.edad_numero, p.sexo, p.imagen, lp.nombre, lp.provincia, lp.localidad from protectora.perros as p, protectora.lista_protectoras as lp where p.fk_protectora = lp.id', (error, rows) => {
+        db.query('select p.id, p.nombre_perro, p.raza, p.edad_numero, p.sexo, p.imagen, lp.nombre, lp.provincia, lp.localidad from protectora.perros as p, protectora.lista_protectoras as lp where p.fk_protectora = lp.id', (error, rows) => {
             if (error) reject(error);
             resolve(rows);
         });

@@ -18,12 +18,12 @@ router.get('/', async (req, res) => {
 });
 
 //GET: PETICIÓN DE UN SOLO PERRO. RENDERIZA LA VISTA VISTAPERRO.!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//PROBLEMA: RENDERIZA LA VISTA PERO NO ME IMPRIME LA INFO DEL PERRO
+//PROBLEMA: RENDERIZA LA VISTA PERO NO ME IMPRIME LA INFO DEL PERRO. AYUDA PLIS!!
 router.get('/:idPerro', async (req, res) => {
     try {
         const idPerro = req.params.idPerro;
         const perro = await getByIdDog(idPerro);
-        // res.json(perro)
+        // res.json(perro) aquí me devuelve correctamente la info del perro, por qué luego no me deja imprimirla en la vista?
         res.render('perros/vistaperro', { perro });
     } catch (error) {
         res.json({ error: error.message })

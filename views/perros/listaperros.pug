@@ -5,9 +5,7 @@ block content
         table(class="table")
             thead
                 th Nombre
-                th Raza
-                th Sexo
-                th Años
+                th Id del perro
                 th Protectora
                 th Acciones
                 
@@ -15,9 +13,7 @@ block content
                 each perro, index in perros
                     tr
                         td= perro.nombre_perro
-                        td= perro.raza
-                        td= perro.sexo
-                        td= perro.edad_numero
+                        td= perro.id
                         td= perro.nombre
                         td
                             a.btn.btn-sm.btn-dark(href="/api/perros/"+perro.id) Ver 
