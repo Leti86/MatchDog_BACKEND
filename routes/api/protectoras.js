@@ -41,6 +41,20 @@ router.get('/:IdProtectora/perros', async (req, res) => {
 
 });
 
+// PROPUESTA IRENE PARA RECUPERAR PERROS DE LA PROTECTORA: devuelve un array con los perros de la protectora cuyo ID le pases. No devuelve info de la protectora, solo los perros que le corresponden a esa protectora.
+// router.get('/:IdProtectora/perros', async (req, res) => {
+//     try {
+//         const IdProtectora = req.params.IdProtectora;
+//         const rows = await getByDogProtectora(IdProtectora);
+//         res.json(rows);
+//     } catch (error) {
+//         res.json({
+//             error: error.message
+//         })
+//     }
+// });
+
+
 // Recupero las protectoras segun la necesidad de voluntarios
 router.get('/necesidad/:necesidad', async (req, res) => {
     try {
