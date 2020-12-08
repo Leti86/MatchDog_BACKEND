@@ -18,7 +18,7 @@ POST http://localhost:3000/api/perros/crear
 Content-Type: application/json
 
 {
-    "raza":"Prueba de insercion",
+    "raza":"PRUEBECITA",
     "edad":"cachorro",
     "tamano":"mediano",
     "edad_numero":1,
@@ -28,7 +28,7 @@ Content-Type: application/json
     "localizacion":"albergue",
     "descripcion":"el más bonito",
     "imagen":"imagen",
-    "nombre_perro":"PRUEBA",
+    "nombre_perro":"LAULTIMAPRUEBA",
     "fk_protectora":1
 
 }
@@ -40,7 +40,7 @@ Content-Type: application/json
 
 {
     
-    "raza":"hola",
+    "raza":"YYY CAMBIO",
     "edad":"cachorro",
     "tamano":"grande",
     "edad_numero":3,
@@ -57,5 +57,5 @@ Content-Type: application/json
 
 ###
 
-DELETE http://localhost:3000/api/perros/borrar/36
+DELETE http://localhost:3000/api/perros/borrar/38
 
