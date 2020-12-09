@@ -9,7 +9,35 @@ const createAdoptante = ({ nombre, apellidos, direccion, email, telefono, locali
     });
 };
 
+const getAll = () => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'SELECT * FROM protectora.adoptantes',
+            (error, rows) => {
+                if (error) reject(error);
+                resolve(rows);
+            }
+        )
+    });
+};
+
+const getByIdAdopter = (pIdAdoptante) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'SELECT * FROM protectora.adoptantes where id=?',
+            [pIdAdoptante],
+            (error, rows) => {
+                if (error) reject(error);
+                if (rows.length === 0) resolve(null);
+                resolve(rows[0]);
+            }
+        )
+    });
+};
+
+//! continuar!!!
+
 
 module.exports = {
-    createAdoptante
+    createAdoptante, getAll, getByIdAdopter
 };
