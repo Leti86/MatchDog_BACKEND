@@ -1,0 +1,57 @@
+extends ../layout.pug
+
+block content
+    h2 Edita adoptante
+    form(method='POST', action="/api/adoptantes/update")
+        .form-group
+            label Nombre
+            input.form-control(type="text", name="nombre", value=adoptante.nombre)
+            .form-group
+            label Apellidos
+            input.form-control(type="text", name="apellidos", value=adoptante.apellidos)
+            .form-group
+            label Direccion
+            input.form-control(type="text", name="direccion", value=adoptante.direccion)
+        .form-group
+            label Email
+            input.form-control(type="text", name="email", value=adoptante.email) 
+        .form-group
+            label Telefono
+            input.form-control(type="text", name="telefono", value=adoptante.telefono)
+        
+        .form-group
+            label Localidad
+            input.form-control(type="text", name="localidad", value=adoptante.localidad)
+        .form-group
+            label Provincia
+            input.form-control(type="text", name="provincia", value=adoptante.provincia)
+        .form-group
+            label ¿Tiene gato?
+            input.form-control(type="text", name="tiene_gato", value=adoptante.tiene_gato)
+        .form-group
+            label Espacio exterior
+            select.form-control
+                option(type="submit", name="espacio_exterior", value=adoptante.espacio_exterior) SI
+                option(type="submit", name="espacio_exterior", value=adoptante.espacio_exterior) NO     
+        .form-group
+            label Metros del espacio exterior
+            input.form-control(type="number", name="metros_exterior", value=adoptante.metros_exterior)
+        .form-group
+            label Tipo de vivienda
+            select.form-control
+                option(name="tipo_vivienda", value=adoptante.tipo_vivienda) Piso
+                option(name="tipo_vivienda", value=adoptante.tipo_vivienda) Casa / Chalet
+        .form-group
+            label Tipo del espacio exterior
+            select.form-control
+                option(name="tipo_espacio_exterior", value=adoptante.tipo_espacio_exterior) Patio
+                option(name="tipo_espacio_exterior", value=adoptante.tipo_espacio_exterior) Jardin   
+        .form-group
+            label Fotos de la casa
+            textarea.form-control(type="text", name="fotos_casa", value=adoptante.fotos_casa)
+
+        input(type="hidden", name="IdAdoptante", value=adoptante.id) 
+        input.btn.btn-block.btn-info(type="submit", value="Enviar")
+            
+        
+

@@ -95,7 +95,7 @@ const getCoord = () => {
 const deleteById = (pIdProtectora) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'SELECT * FROM protectora.lista_protectoras',
+            'delete from lista_protectoras where id = ?',
             [pIdProtectora],
             (error, result) => {
                 if (error) reject(error);
