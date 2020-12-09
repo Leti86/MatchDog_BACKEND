@@ -74,6 +74,23 @@ const getByNeedForVolunteers = (pNecesidadVoluntarios) => {
     });
 };
 
+//Obtenemos la longitud y la latitud de cada protectora (para imprimir los markers en el mapa del front) FUNCIONA, NO TOCAR
+const getCoord = () => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'SELECT lp.latitud, lp.longitud FROM protectora.lista_protectoras as lp',
+            (error, rows) => {
+                if (error) reject(error);
+                resolve(rows);
+            }
+        )
+    });
+};
+
+
+
+
+
 // Eliminamos protectoras
 const deleteById = (pIdProtectora) => {
     return new Promise((resolve, reject) => {
@@ -106,5 +123,5 @@ const updateById = (pIdProtectora, { nombre, email, telefono, direccion, localid
 
 
 module.exports = {
-    getAll, create, getById, deleteById, updateById, getByNeedForVolunteers, getByDogProtectora
+    getAll, create, getById, deleteById, updateById, getByNeedForVolunteers, getByDogProtectora, getCoord
 };

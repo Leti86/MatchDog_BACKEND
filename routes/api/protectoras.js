@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAll, create, getById, getByNeedForVolunteers, getByDogProtectora, updateById, deleteById } = require('../../models/protectora');
+const { getAll, create, getById, getByNeedForVolunteers, getByDogProtectora, updateById, deleteById, getCoord } = require('../../models/protectora');
 
 // Recupero todas las protectoras
 router.get('/', async (req, res) => {
@@ -56,6 +56,19 @@ router.get('/necesidad/:necesidad', async (req, res) => {
         })
     }
 });
+
+//Recupero la longitud y latitud de todas las protectoras (para imprimir los markers en el mapa) FUNCIONA, NO TOCAR
+router.get('/coordenadas/coordenadas', async (req, res) => {
+    try {
+        const coordenadas = await getCoord();
+        res.json(coordenadas);
+    } catch (error) {
+        res.json({
+            error: error.message
+        })
+    }
+});
+
 
 // Editamos una protectora //! Problema, no me aperecen ni los comentarios ni la necesitadad. REVISAR!!!
 router.get('/edita/:IdProtectora', async (req, res) => {
