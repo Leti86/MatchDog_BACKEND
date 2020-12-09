@@ -1,0 +1,18 @@
+POST http://localhost:3000/api/adoptantes/crear
+Content-Type: application/json
+
+{
+    "nombre": "ADOPTANTE PRUEBA",
+    "apellidos": "DEPRUEBA",
+    "direccion": "DIRDEPRUEBA 4",
+    "email": "prueba@mail.com",
+    "telefono": 898767545,
+    "localidad": "Buitrago del Lozoya",
+    "provincia": "Madrid",
+    "tiene_gato": "no",
+    "espacio_exterior": "si",
+    "metros_exterior": 7,
+    "tipo_vivienda": "casa/chalet",
+    "tipo_espacio_exterior": "patio",
+    "fotos_casa": "https://i.ytimg.com/vi/SsdNJTN_mZI/maxresdefault.jpg"
+}
