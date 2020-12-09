@@ -47,7 +47,7 @@ const getById = (pIdProtectora) => {
 const getByDogProtectora = (pIdProtectora) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'select lp.*, p.* from protectora.lista_protectoras as lp, protectora.perros as p where p.fk_protectora = lp.id',
+            'select p.* from protectora.lista_protectoras as lp, protectora.perros as p where p.fk_protectora = lp.id and lp.id=?',
             [pIdProtectora],
             (error, rows) => {
                 if (error) reject(error);
@@ -56,20 +56,6 @@ const getByDogProtectora = (pIdProtectora) => {
         )
     });
 }
-
-// Perros de cada protectora: PROPUESTA SOLUCIÓN IRENE
-// const getByDogProtectora = (pIdProtectora) => {
-//     return new Promise((resolve, reject) => {
-//         db.query(
-//             'select p.* from protectora.lista_protectoras as lp, protectora.perros as p where p.fk_protectora = lp.id and lp.id=?',
-//             [pIdProtectora],
-//             (error, rows) => {
-//                 if (error) reject(error);
-//                 resolve(rows);
-//             }
-//         )
-//     });
-// }
 
 
 

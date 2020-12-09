@@ -26,7 +26,7 @@ router.get('/:IdProtectora', async (req, res) => {
 });
 
 
-// Recupero los perros de cada protectora // ! Me devuellve array con TODOS los perros
+// Recupero los perros de cada protectora 
 router.get('/:IdProtectora/perros', async (req, res) => {
     try {
         const protectora = await getById(req.params.IdProtectora);
@@ -41,18 +41,7 @@ router.get('/:IdProtectora/perros', async (req, res) => {
 
 });
 
-// PROPUESTA IRENE PARA RECUPERAR PERROS DE LA PROTECTORA: devuelve un array con los perros de la protectora cuyo ID le pases. No devuelve info de la protectora, solo los perros que le corresponden a esa protectora.
-// router.get('/:IdProtectora/perros', async (req, res) => {
-//     try {
-//         const IdProtectora = req.params.IdProtectora;
-//         const rows = await getByDogProtectora(IdProtectora);
-//         res.json(rows);
-//     } catch (error) {
-//         res.json({
-//             error: error.message
-//         })
-//     }
-// });
+
 
 
 // Recupero las protectoras segun la necesidad de voluntarios
@@ -67,7 +56,7 @@ router.get('/necesidad/:necesidad', async (req, res) => {
     }
 });
 
-// Editamos una protectora //! No me aperecen ni los comentarios ni la necesitadad. REVISAR!!!
+// Editamos una protectora //! Problema, no me aperecen ni los comentarios ni la necesitadad. REVISAR!!!
 router.get('/edita/:IdProtectora', async (req, res) => {
     try {
         const IdProtectora = req.params.IdProtectora;
@@ -115,17 +104,37 @@ router.post('/update', async (req, res) => {
 
 
 
-// Creo una protectora // ! Faltan validaciones y comprobaciones
-router.post('/', async (req, res) => {
-    try {
-        const result = await create(req.body);
-        res.json(result);
-    } catch (error) {
-        res.json({
-            error: error.message
-        })
-    }
-});
+// Creo una protectora // ! Revisar validaciones
+router.post('/', /* [
+    //Comporbamos datos de entrada
+    body('nombre', 'El campo nombre debe tener valor').exists().not().isEmpty(),
+    body('email').isEmail(),
+    body('telefono', 'El campo telefono debe un minimo de 9 digitos').exists().not().isEmpty(),
+    body('direccion', 'El campo dirección debe tener valor').exists().not().isEmpty(),
+    body('localidad', 'El campo locallidad debe tener valor').exists().not().isEmpty(),
+    body('localidad', 'El campo locallidad debe tener valor').exists().not().isEmpty(),
+    body('provincia', 'El campo provincia debe tener valor').exists().not().isEmpty(),
+    body('latitud', 'El campo latitud debe tener valor').exists().not().isEmpty(),
+    body('longitud', 'El campo longitud debe tener valor').exists().not().isEmpty(),
+    body('necesidad_voluntarios', 'Debes introducir un valor').exists().not().isEmpty(),
+    body('imagen', 'Introduce una imagen por por favor').exists().not().isEmpty(),
+    body('comentarios', 'Haznos una breve descripcion').exists().not().isEmpty()
+], */ async (req, res) => {
+        try {
+
+            const errors = validationResult(req);
+            if (!errors.isEmpty()) {
+                return res.status(400).json({ errors: errors.array() });
+            }
+
+            const result = await create(req.body);
+            res.json(result);
+        } catch (error) {
+            res.json({
+                error: error.message
+            })
+        }
+    });
 
 
 
