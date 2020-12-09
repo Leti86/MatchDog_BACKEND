@@ -8,9 +8,7 @@ const { getAllDog, getByIdDog, getByAgeDog, getBySizeDog, createDog, deleteByIdD
 router.get('/', async (req, res) => {
     try {
         const rows = await getAllDog();
-        res.render('perros/listaperros', {
-            perros: rows
-        });
+        res.json(rows);
 
     } catch (error) {
         res.json({ error: error.message });

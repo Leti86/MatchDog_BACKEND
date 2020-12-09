@@ -4,8 +4,9 @@ const { getAll, create, getById, getByNeedForVolunteers, getByDogProtectora, upd
 // Recupero todas las protectoras
 router.get('/', async (req, res) => {
     try {
-        const rows = await getAll()
-        res.render('protectoras/listadoProtectoras', { protectoras: rows });
+        const rows = await getAll();
+        res.json(rows);
+
     } catch (error) {
         res.json({ error: error.message });
     }
