@@ -70,7 +70,7 @@ router.get('/coordenadas/coordenadas', async (req, res) => {
 });
 
 
-// Editamos una protectora //! Problema, no me aperecen ni los comentarios ni la necesitadad. REVISAR!!!
+// Editamos una protectora 
 router.get('/edita/:IdProtectora', async (req, res) => {
     try {
         const IdProtectora = req.params.IdProtectora;
@@ -118,7 +118,7 @@ router.post('/update', async (req, res) => {
 
 
 
-// Creo una protectora // ! Revisar validaciones
+// Creo una protectora 
 router.post('/', /* [
     //Comporbamos datos de entrada
     body('nombre', 'El campo nombre debe tener valor').exists().not().isEmpty(),

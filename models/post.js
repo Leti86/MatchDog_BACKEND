@@ -31,8 +31,7 @@ const getByCategory = (pCategory) => {
 // Recupero los post mas recientes
 const getPostByDate = () => {
     return new Promise((resolve, reject) => {
-        db.query(
-            'select posts.* from protectora.posts where fecha >= "2020-09-10"',
+        db.query('select posts.* from protectora.posts where fecha >= "2020-09-10"',
 
             (error, rows) => {
                 if (error) reject(error);

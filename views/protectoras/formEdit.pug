@@ -31,20 +31,20 @@ block content
             label Necesidad de voluntarios
             div.col-sm-10
                 div.form-check
-                    input.form-check-input(type="radio" name="necesidad_voluntarios" value=protectora.necesidad_voluntarios)
+                    input.form-check-input(type="radio" name="necesidad_voluntarios", checked=(protectora.necesidad_voluntarios === 'alta'))
                     label.form-check-label ALTA
                 div.form-check
-                    input.form-check-input(type="radio" name="necesidad_voluntarios" value=protectora.necesidad_voluntarios)
+                    input.form-check-input(type="radio" name="necesidad_voluntarios" checked=(protectora.necesidad_voluntarios === 'media'))
                     label.form-check-label MEDIA
                 div.form-check
-                    input.form-check-input(type="radio" name="necesidad_voluntarios" value=protectora.necesidad_voluntarios)
+                    input.form-check-input(type="radio" name="necesidad_voluntarios" checked=(protectora.necesidad_voluntarios === 'baja'))
                     label.form-check-label BAJA
         .form-group
             label Imagen
             input.form-control(type="text", name="imagen", value=protectora.imagen)
         .form-group
             label Comentarios
-            textarea.form-control(type="text", name="comentarios", value=protectora.comentarios)
+            textarea.form-control(type="text", name="comentarios")=protectora.comentarios
 
         input(type="hidden", name="IdProtectora", value=protectora.id) 
         input.btn.btn-block.btn-info(type="submit", value="Enviar")

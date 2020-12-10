@@ -27,11 +27,11 @@ router.get('/:categoria', async (req, res) => {
 });
 
 // Repuro post mas recientes
-router.get('/recientes', async (req, res) => {
+router.get('/fecha/recientes', async (req, res) => {
     try {
         const postRecientes = await getPostByDate();
         res.json(postRecientes);
-        console.log(postRecientes);
+        //console.log(postRecientes);
     } catch (error) {
         res.json({
             error: error.message
