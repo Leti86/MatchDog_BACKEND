@@ -1,6 +1,5 @@
-const { deleteByIDAdopter } = require("./adoptante");
 
-// Selleccionamos todos los post
+// Seleccionamos todos los post
 const getAllPosts = () => {
     return new Promise((resolve, reject) => {
         db.query(
@@ -57,7 +56,20 @@ const countPost = (pCategoria) => {
     });
 };
 
+// Recupero numero de posts TOTALES
+const countTotalPost = () => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'select count(id) as "numPost" from protectora.posts',
+            (error, result) => {
+                if (error) reject(error);
+                resolve(result)
+            }
+        )
+    });
+}
+
 
 module.exports = {
-    getAllPosts, getByCategory, getPostByDate, countPost
+    getAllPosts, getByCategory, getPostByDate, countPost, countTotalPost
 };
