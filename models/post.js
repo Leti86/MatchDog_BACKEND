@@ -43,7 +43,21 @@ const getPostByDate = () => {
 
 };
 
+// Recupero total de post por categoria
+const countPost = (pCategoria) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'select count(id) as "numPost" from protectora.posts where categoria = ?',
+            [pCategoria],
+            (error, result) => {
+                if (error) reject(error);
+                resolve(result);
+            }
+        )
+    });
+};
+
 
 module.exports = {
-    getAllPosts, getByCategory, getPostByDate
+    getAllPosts, getByCategory, getPostByDate, countPost
 };
