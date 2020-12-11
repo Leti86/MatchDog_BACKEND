@@ -1,4 +1,7 @@
 const router = require('express').Router();
+const bcrypt = require('bcryptjs'); //estamos requiriendo la librería que hemos instalado
+const jwt = require('jsonwebtoken');
+const dayjs = require('dayjs');
 
 const { createAdoptante, getAll, getByIdAdopter, updateById, deleteByIDAdopter } = require('../../models/adoptante');
 
