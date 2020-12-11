@@ -12,11 +12,11 @@ const getAll = () => {
 
 
 // Creamos una nueva protectora
-const create = ({ nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios }) => {
+const create = ({ nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios, password_protectora }) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'INSERT INTO protectora.lista_protectoras (nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios) VALUES (?,?,?,?,?,?,?,?,?,?,?)',
-            [nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios],
+            'INSERT INTO protectora.lista_protectoras (nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios, password_protectora) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)',
+            [nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios, password_protectora],
             (error, result) => {
                 if (error) reject(error);
                 resolve(result);
@@ -107,10 +107,10 @@ const deleteById = (pIdProtectora) => {
 
 
 // Modificamos datos de una protectora
-const updateById = (pIdProtectora, { nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios }) => {
+const updateById = (pIdProtectora, { nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios, password_protectora }) => {
     return new Promise((resolve, reject) => {
-        db.query('UPDATE protectora.lista_protectoras SET nombre = ?, email = ?, telefono=?, direccion = ?, localidad = ?, provincia = ?, latitud = ?, longitud= ?, necesidad_voluntarios = ?, imagen= ?, comentarios= ? WHERE id = ?',
-            [nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios, pIdProtectora],
+        db.query('UPDATE protectora.lista_protectoras SET nombre = ?, email = ?, telefono=?, direccion = ?, localidad = ?, provincia = ?, latitud = ?, longitud= ?, necesidad_voluntarios = ?, imagen= ?, comentarios= ?, password_protectora= ? WHERE id = ?',
+            [nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios, password_protectora, pIdProtectora],
             (error, result) => {
                 if (error) reject(error);
                 resolve(result);

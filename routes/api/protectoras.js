@@ -119,36 +119,16 @@ router.post('/update', async (req, res) => {
 
 
 // Creo una protectora 
-router.post('/', /* [
-    //Comporbamos datos de entrada
-    body('nombre', 'El campo nombre debe tener valor').exists().not().isEmpty(),
-    body('email').isEmail(),
-    body('telefono', 'El campo telefono debe un minimo de 9 digitos').exists().not().isEmpty(),
-    body('direccion', 'El campo dirección debe tener valor').exists().not().isEmpty(),
-    body('localidad', 'El campo locallidad debe tener valor').exists().not().isEmpty(),
-    body('localidad', 'El campo locallidad debe tener valor').exists().not().isEmpty(),
-    body('provincia', 'El campo provincia debe tener valor').exists().not().isEmpty(),
-    body('latitud', 'El campo latitud debe tener valor').exists().not().isEmpty(),
-    body('longitud', 'El campo longitud debe tener valor').exists().not().isEmpty(),
-    body('necesidad_voluntarios', 'Debes introducir un valor').exists().not().isEmpty(),
-    body('imagen', 'Introduce una imagen por por favor').exists().not().isEmpty(),
-    body('comentarios', 'Haznos una breve descripcion').exists().not().isEmpty()
-], */ async (req, res) => {
-        try {
-
-            /* const errors = validationResult(req);
-            if (!errors.isEmpty()) {
-                return res.status(400).json({ errors: errors.array() });
-            } */
-
-            const result = await create(req.body);
-            res.json(result);
-        } catch (error) {
-            res.json({
-                error: error.message
-            })
-        }
-    });
+router.post('/', async (req, res) => {
+    try {
+        const result = await create(req.body);
+        res.json(result);
+    } catch (error) {
+        res.json({
+            error: error.message
+        })
+    }
+});
 
 
 

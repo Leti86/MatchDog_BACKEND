@@ -46,6 +46,10 @@ block content
             label Comentarios
             textarea.form-control(type="text", name="comentarios")=protectora.comentarios
 
+        .form-group
+            label Contraseña
+            input.form-control(type="password", name="password_protectora", value=protectora.password_protectora)
+
         input(type="hidden", name="IdProtectora", value=protectora.id) 
         input.btn.btn-block.btn-info(type="submit", value="Enviar")
             

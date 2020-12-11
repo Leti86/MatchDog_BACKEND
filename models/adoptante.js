@@ -1,8 +1,8 @@
 
 //CUIDADO AQUI: LA BASE DE DATOS CREA CON OTROS DATOS, REVISAR (METE METROS Y TIPO ESPACIO EXTERIOR AUNQUE SON OPCIONALES: REVISAR, LOS HEMOS PUESTO COMO POSIBLES NULL EN MYSQL??)
-const createAdoptante = ({ nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa }) => {
+const createAdoptante = ({ nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password }) => {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO protectora.adoptantes (nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)', [nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa], (error, result) => {
+        db.query('INSERT INTO protectora.adoptantes (nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password], (error, result) => {
             if (error) reject(error);
             resolve(result);
         })
@@ -55,11 +55,11 @@ const deleteByIDAdopter = (pIdAdoptante) => {
 };
 
 // Modificamos datos de una adoptante
-const updateById = (pIdAdoptante, { nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa }) => {
+const updateById = (pIdAdoptante, { nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password }) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'UPDATE protectora.adoptantes SET nombre = ?, apellidos = ?, direccion=?, email = ?, telefono = ?, localidad = ?, provincia = ?, tiene_gato= ?, espacio_exterior = ?, metros_exterior= ?, tipo_vivienda= ?, tipo_espacio_exterior=?, fotos_casa=? WHERE id = ?',
-            [nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, pIdAdoptante],
+            'UPDATE protectora.adoptantes SET nombre = ?, apellidos = ?, direccion=?, email = ?, telefono = ?, localidad = ?, provincia = ?, tiene_gato= ?, espacio_exterior = ?, metros_exterior= ?, tipo_vivienda= ?, tipo_espacio_exterior=?, fotos_casa=?, password=? WHERE id = ?',
+            [nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password, pIdAdoptante],
             (error, result) => {
                 if (error) reject(error);
                 resolve(result);

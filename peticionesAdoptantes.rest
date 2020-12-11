@@ -14,5 +14,6 @@ Content-Type: application/json
     "metros_exterior": 7,
     "tipo_vivienda": "casa/chalet",
     "tipo_espacio_exterior": "patio",
-    "fotos_casa": "https://i.ytimg.com/vi/SsdNJTN_mZI/maxresdefault.jpg"
+    "fotos_casa": "https://i.ytimg.com/vi/SsdNJTN_mZI/maxresdefault.jpg",
+    "password": 654321
 }

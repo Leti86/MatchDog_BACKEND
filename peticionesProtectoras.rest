@@ -15,8 +15,18 @@ Content-Type: application/json
     "longitud": 1,
     "necesidad_voluntarios": "alta",
     "imagen": "leti",
-    "comentarios": "leti"
+    "comentarios": "leti",
+    "password_protectora": 1234
 
+}
+
+###
+GET http://localhost:3000/api/protectoras/edita/12
+Content-Type: application/json
+
+{
+    "comentarios": "leti prueba coment",
+    "password_protectora": 12345
 }
 
 
