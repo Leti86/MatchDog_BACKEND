@@ -9,3 +9,10 @@ GET http://localhost:3000/api/posts/count/aseo
 ###
 GET http://localhost:3000/api/posts/count/total
 
+
+###
+GET http://localhost:3000/api/posts/titulo/2
+
+
+
+

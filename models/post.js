@@ -50,26 +50,30 @@ const countPost = (pCategoria) => {
             [pCategoria],
             (error, result) => {
                 if (error) reject(error);
-                resolve(result);
+                resolve(result[0]);
             }
         )
     });
 };
 
-// Recupero numero de posts TOTALES
-const countTotalPost = () => {
+
+// Recupero Post por titulos
+const getPostTitle = (pId) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'select count(id) as "numPost" from protectora.posts',
-            (error, result) => {
+            'select * from protectora.posts where posts.id = ?',
+            [pId],
+            (error, rows) => {
+
                 if (error) reject(error);
-                resolve(result)
+                resolve(rows)
             }
+
         )
     });
 }
 
 
 module.exports = {
-    getAllPosts, getByCategory, getPostByDate, countPost, countTotalPost
+    getAllPosts, getByCategory, getPostByDate, countPost, getPostTitle
 };

@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 
-const { getAllPosts, getByCategory, getPostByDate, countPost, countTotalPost } = require('../../models/post');
+const { getAllPosts, getByCategory, getPostByDate, countPost, getPostTitle } = require('../../models/post');
 
 // Recupero todos los posts
 router.get('/', async (req, res) => {
@@ -40,18 +40,7 @@ router.get('/fecha/recientes', async (req, res) => {
 });
 
 
-// Recupero TOTAL de posts
-router.get('/count/total', async (req, res) => {
-    try {
-        const totalPost = await countTotalPost();
-        res.json(totalPost);
-        console.log(totalPost);
-    } catch (error) {
-        res.json({
-            error: error.message
-        })
-    }
-});
+
 
 // Recupero total de post por CATEGORIAS
 router.get('/count/:categorias', async (req, res) => {
@@ -64,6 +53,18 @@ router.get('/count/:categorias', async (req, res) => {
         res.json({ error: error.message })
     }
 });
+
+// Recupero Post por titulo
+router.get('/titulo/:pId', async (req, res) => {
+    try {
+        const id = req.params.pId;
+        const postTitulo = await getPostTitle(id);
+        res.json(postTitulo);
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+
+})
 
 
 
