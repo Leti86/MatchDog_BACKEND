@@ -80,5 +80,48 @@ router.post('/update', async (req, res) => {
 
 });
 
+//A PARTIR DE AQUÍ: RUTAS Y MÉTODOS DEL LOGIN
+
+//Obtiene la contraseña del adoptante que se está creando y la encripta
+router.post('/registro', async (req, res) => {
+    try {
+        req.body.password = bcrypt.hashSync(req.body.password, 10);
+        const result = await createAdoptante(req.body);
+        res.json(result);
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+});
+
+//ruta para que el adoptante haga login y obtenga su token
+router.post('login', async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const adoptante = await getByIdAdopter(email);
+        if (!adoptante) {
+            return res.json({ error: 'Error en email y/o contraseña' });
+        }
+        const iguales = bcrypt.compareSync(password, adoptante.password);
+        if (!iguales) {
+            return res.json({ error: 'Error en email y/o contraseña' });
+        }
+        res.json({
+            success: 'Login correcto',
+            token: createToken(adoptante)
+        })
+
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+})
+
+//función de creación de token
+function createToken(pAdoptante) {
+    const obj = {
+        adoptanteId: pAdoptante.id,
+        caducidad: dayjs().add(10, 'minute').unix()
+    }
+    return jwt.sign(obj, process.env.SECRET_KEY);
+};
 
 module.exports = router;
