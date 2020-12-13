@@ -26,7 +26,7 @@ const checkToken = async (req, res, next) => {
 
     const adoptante = await getByIdAdopter(obj.adoptanteId);
     console.log(adoptante);
-    const protectora = await getById(obj.id);
+    const protectora = await getById(obj.protectoraId);
     console.log(protectora);
 
     if (!adoptante && !protectora) {
