@@ -2,12 +2,12 @@ POST http://localhost:3000/api/adoptantes/crear
 Content-Type: application/json
 
 {
-    "nombre": "ENCRIPTADO",
-    "apellidos": "ENCRIPTADO",
-    "direccion": "DIRENCRIPTADO 4",
-    "email": "encriptado@mail.com",
+    "nombre": "cambio",
+    "apellidos": "cambio",
+    "direccion": "DIRcambio 4",
+    "email": "cambio@mail.com",
     "telefono": 898767545,
-    "localidad": "ENCRIPTADO",
+    "localidad": "cambio",
     "provincia": "Madrid",
     "tiene_gato": "no",
     "espacio_exterior": "si",
@@ -20,7 +20,7 @@ Content-Type: application/json
 
 ###
 
-PUT http://localhost:3000/api/adoptantes/17
+PUT http://localhost:3000/api/adoptantes/23
 Content-Type: application/json
 
 {
@@ -46,7 +46,13 @@ POST http://localhost:3000/api/adoptantes/login
 Content-Type: application/json
 
 {
-    "password": "Cucu1",
-    "email": "cucu@mail.com"
+    "password": "Prueba1",
+    "email": "pruebamiddleware@mail.com"
 }
+
+###
+
+GET http://localhost:3000/api/perros
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG9wdGFudGVJZCI6MjMsImNhZHVjaWRhZCI6MTYwNzg3ODI3MywiaWF0IjoxNjA3ODc3NjczfQ.-XoI63--45XdXMvKhxS87PBrwC_5wza9F5kPrU4YPIw
+
 
