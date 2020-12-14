@@ -94,7 +94,7 @@ router.post('/update', async (req, res) => {
 
 
 //A PARTIR DE AQUÍ: RUTAS Y MÉTODOS DEL LOGIN
-//ruta para que el adoptante haga login y obtenga su token
+// ruta para que el adoptante haga login y obtenga su token
 router.post('/login', async (req, res) => {
     const { email, password } = req.body;
     console.log(req.body);
@@ -107,6 +107,9 @@ router.post('/login', async (req, res) => {
             return res.json({ error: 'Error en email y/o contraseña1' });
         }
         const iguales = bcrypt.compareSync(password, adoptante.password);
+        console.log(iguales);
+
+
         if (!iguales) {
             return res.json({ error: 'Error en email y/o contraseña2' });
         }

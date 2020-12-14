@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { getAll, create, getById, getByNeedForVolunteers, getByDogProtectora, updateById, deleteById, getCoord } = require('../../models/protectora');
+const { getAll, create, getById, getByEmailProtectora, getByNeedForVolunteers, getByDogProtectora, updateById, deleteById, getCoord } = require('../../models/protectora');
 
 // Recupero todas las protectoras
 router.get('/', async (req, res) => {
