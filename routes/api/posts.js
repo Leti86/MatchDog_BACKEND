@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 
-const { getAllPosts, getByCategory, getPostByDate, countPost, getPostTitle } = require('../../models/post');
+const { getAllPosts, getByCategory, getPostByDate, countPost, getPostTitle, getPostByWord } = require('../../models/post');
 
 // Recupero todos los posts
 router.get('/', async (req, res) => {
@@ -64,7 +64,18 @@ router.get('/titulo/:pId', async (req, res) => {
         res.json({ error: error.message })
     }
 
-})
+});
+
+// Recuperoo Post por Palabra
+router.get('/palabra/:pPalabra', async (req, res) => {
+    try {
+        const palabra = req.params.pPalabra;
+        const postPorPalabra = await getPostByWord(palabra);
+        res.json(postPorPalabra);
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+});
 
 
 

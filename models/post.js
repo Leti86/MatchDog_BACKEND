@@ -74,6 +74,24 @@ const getPostTitle = (pId) => {
 }
 
 
+// Recupero Post por palabra que contenga (buscador) //! revisar
+const getPostByWord = (pPalabra) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'select * from protectora.posts where posts.titulo or posts.texto like "%?%"',
+            [pPalabra],
+            (error, rows) => {
+                if (error) reject(error);
+                resolve(rows)
+            }
+        )
+    });
+};
+
+
+
+
+
 module.exports = {
-    getAllPosts, getByCategory, getPostByDate, countPost, getPostTitle
+    getAllPosts, getByCategory, getPostByDate, countPost, getPostTitle, getPostByWord
 };
