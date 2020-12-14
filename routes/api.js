@@ -1,13 +1,15 @@
 const router = require('express').Router();
 
+const { checkToken } = require('./middleware');
+
 const apiPerrosRouter = require('./api/perros');
 const apiProtectorasRouter = require('./api/protectoras');
 const apiAdoptantesRouter = require('./api/adoptantes');
 const apiPostsRouter = require('./api/posts');
 
-router.use('/perros', apiPerrosRouter);
+router.use('/perros', checkToken, apiPerrosRouter);
 router.use('/protectoras', apiProtectorasRouter);
 router.use('/adoptantes', apiAdoptantesRouter);
-router.use('/posts', apiPostsRouter);
+router.use('/posts', checkToken, apiPostsRouter);
 
 module.exports = router;

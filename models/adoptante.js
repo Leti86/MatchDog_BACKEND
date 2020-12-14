@@ -2,7 +2,7 @@
 //CUIDADO AQUI: LA BASE DE DATOS CREA CON OTROS DATOS, REVISAR (METE METROS Y TIPO ESPACIO EXTERIOR AUNQUE SON OPCIONALES: REVISAR, LOS HEMOS PUESTO COMO POSIBLES NULL EN MYSQL??)
 const createAdoptante = ({ nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password }) => {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO protectora.adoptantes (nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password], (error, result) => {
+        db.query('INSERT INTO protectora.adoptantes (nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password, rol) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password, 'ADOPTANTE'], (error, result) => {
             if (error) reject(error);
             resolve(result);
         })
@@ -39,6 +39,23 @@ const getByIdAdopter = (pIdAdoptante) => {
     });
 };
 
+//obtener el adoptante por su email de registro
+const getByEmailAdopter = (pEmailAdoptante) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'SELECT * FROM protectora.adoptantes where email=?',
+            [pEmailAdoptante],
+            (error, rows) => {
+                if (error) reject(error);
+                if (rows.length === 0) resolve(null);
+                resolve(rows[0]);
+            }
+        )
+    });
+};
+
+
+
 // Eliminamos adoptante
 const deleteByIDAdopter = (pIdAdoptante) => {
     return new Promise((resolve, reject) => {
@@ -54,12 +71,12 @@ const deleteByIDAdopter = (pIdAdoptante) => {
     });
 };
 
-// Modificamos datos de una adoptante
+// Modificamos datos de un adoptante
 const updateById = (pIdAdoptante, { nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password }) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'UPDATE protectora.adoptantes SET nombre = ?, apellidos = ?, direccion=?, email = ?, telefono = ?, localidad = ?, provincia = ?, tiene_gato= ?, espacio_exterior = ?, metros_exterior= ?, tipo_vivienda= ?, tipo_espacio_exterior=?, fotos_casa=?, password=? WHERE id = ?',
-            [nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password, pIdAdoptante],
+            'UPDATE protectora.adoptantes SET nombre = ?, apellidos = ?, direccion=?, email = ?, telefono = ?, localidad = ?, provincia = ?, tiene_gato= ?, espacio_exterior = ?, metros_exterior= ?, tipo_vivienda= ?, tipo_espacio_exterior=?, fotos_casa=?, password=?, rol=?  WHERE id = ?',
+            [nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password, 'ADOPTANTE', pIdAdoptante],
             (error, result) => {
                 if (error) reject(error);
                 resolve(result);
@@ -72,5 +89,5 @@ const updateById = (pIdAdoptante, { nombre, apellidos, direccion, email, telefon
 
 
 module.exports = {
-    createAdoptante, getAll, getByIdAdopter, deleteByIDAdopter, updateById
+    createAdoptante, getAll, getByIdAdopter, getByEmailAdopter, deleteByIDAdopter, updateById
 };

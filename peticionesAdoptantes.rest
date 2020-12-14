@@ -2,12 +2,12 @@ POST http://localhost:3000/api/adoptantes/crear
 Content-Type: application/json
 
 {
-    "nombre": "ADOPTANTE PRUEBA",
-    "apellidos": "DEPRUEBA",
-    "direccion": "DIRDEPRUEBA 4",
-    "email": "prueba@mail.com",
+    "nombre": "cambio",
+    "apellidos": "cambio",
+    "direccion": "DIRcambio 4",
+    "email": "cambio@mail.com",
     "telefono": 898767545,
-    "localidad": "Buitrago del Lozoya",
+    "localidad": "cambio",
     "provincia": "Madrid",
     "tiene_gato": "no",
     "espacio_exterior": "si",
@@ -17,3 +17,42 @@ Content-Type: application/json
     "fotos_casa": "https://i.ytimg.com/vi/SsdNJTN_mZI/maxresdefault.jpg",
     "password": 654321
 }
+
+###
+
+PUT http://localhost:3000/api/adoptantes/23
+Content-Type: application/json
+
+{
+    "nombre": "UPDATE",
+    "apellidos": "UPDATE",
+    "direccion": "UPDATE 4",
+    "email": "UPDATE@mail.com",
+    "telefono": 898767545,
+    "localidad": "UPDATE",
+    "provincia": "Madrid",
+    "tiene_gato": "no",
+    "espacio_exterior": "si",
+    "metros_exterior": 7,
+    "tipo_vivienda": "casa/chalet",
+    "tipo_espacio_exterior": "patio",
+    "fotos_casa": "https://i.ytimg.com/vi/SsdNJTN_mZI/maxresdefault.jpg",
+    "password": 654321
+}
+
+###
+
+POST http://localhost:3000/api/adoptantes/login
+Content-Type: application/json
+
+{
+    "password": "Prueba1",
+    "email": "pruebamiddleware@mail.com"
+}
+
+###
+
+GET http://localhost:3000/api/perros
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG9wdGFudGVJZCI6MjMsImNhZHVjaWRhZCI6MTYwNzg3ODI3MywiaWF0IjoxNjA3ODc3NjczfQ.-XoI63--45XdXMvKhxS87PBrwC_5wza9F5kPrU4YPIw
+
+
