@@ -42,6 +42,22 @@ const getById = (pIdProtectora) => {
     });
 };
 
+//Filtramos por mail de la protectora
+const getByEmailProtectora = (pEmailProtectora) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'SELECT * FROM protectora.lista_protectoras where email=?',
+            [pEmailProtectora],
+            (error, rows) => {
+                if (error) reject(error);
+                if (rows.length === 0) resolve(null);
+                resolve(rows[0]);
+            }
+        )
+    });
+};
+
+
 
 // Perros de cada protectora
 const getByDogProtectora = (pIdProtectora) => {
@@ -123,5 +139,5 @@ const updateById = (pIdProtectora, { nombre, email, telefono, direccion, localid
 
 
 module.exports = {
-    getAll, create, getById, deleteById, updateById, getByNeedForVolunteers, getByDogProtectora, getCoord
+    getAll, create, getById, getByEmailProtectora, deleteById, updateById, getByNeedForVolunteers, getByDogProtectora, getCoord
 };

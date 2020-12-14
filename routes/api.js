@@ -7,9 +7,9 @@ const apiProtectorasRouter = require('./api/protectoras');
 const apiAdoptantesRouter = require('./api/adoptantes');
 const apiPostsRouter = require('./api/posts');
 
-router.use('/perros', checkToken, apiPerrosRouter);
+router.use('/perros', apiPerrosRouter);
 router.use('/protectoras', apiProtectorasRouter);
 router.use('/adoptantes', apiAdoptantesRouter);
-router.use('/posts', checkToken, apiPostsRouter);
+router.use('/posts', apiPostsRouter);
 
 module.exports = router;
