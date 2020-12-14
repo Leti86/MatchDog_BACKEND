@@ -78,7 +78,7 @@ const getByNeedForVolunteers = (pNecesidadVoluntarios) => {
 const getCoord = () => {
     return new Promise((resolve, reject) => {
         db.query(
-            'SELECT lp.latitud, lp.longitud FROM protectora.lista_protectoras as lp',
+            'SELECT lp.latitud, lp.longitud, lp.nombre, lp.localidad FROM protectora.lista_protectoras as lp',
             (error, rows) => {
                 if (error) reject(error);
                 resolve(rows);

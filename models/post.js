@@ -78,8 +78,8 @@ const getPostTitle = (pId) => {
 const getPostByWord = (pPalabra) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'select * from protectora.posts where posts.titulo or posts.texto like "%?%"',
-            [pPalabra],
+            'select * from protectora.posts where posts.titulo or posts.texto like ?',
+            ['%' + pPalabra + '%'],
             (error, rows) => {
                 if (error) reject(error);
                 resolve(rows)
