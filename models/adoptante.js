@@ -1,5 +1,5 @@
 
-//CUIDADO AQUI: LA BASE DE DATOS CREA CON OTROS DATOS, REVISAR (METE METROS Y TIPO ESPACIO EXTERIOR AUNQUE SON OPCIONALES: REVISAR, LOS HEMOS PUESTO COMO POSIBLES NULL EN MYSQL??)
+//creamos un adoptante
 const createAdoptante = ({ nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password }) => {
     return new Promise((resolve, reject) => {
         db.query('INSERT INTO protectora.adoptantes (nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password, rol) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password, 'ADOPTANTE'], (error, result) => {

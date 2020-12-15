@@ -101,8 +101,6 @@ router.post('/login', async (req, res) => {
 
     try {
         const adoptante = await getByEmailAdopter(email);
-        console.log(password); //esta está llegando sin encriptar
-        console.log(adoptante.password); //esta está llegando encriptada. por eso cuando se comparan entra en el segundo if
         if (!adoptante) {
             return res.json({ error: 'Error en email y/o contraseña1' });
         }
@@ -117,6 +115,7 @@ router.post('/login', async (req, res) => {
             success: 'Login correcto',
             token: createToken(adoptante)
         })
+
     } catch (error) {
         res.json({ error: error.message });
     }

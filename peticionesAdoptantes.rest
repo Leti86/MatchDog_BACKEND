@@ -24,12 +24,12 @@ PUT http://localhost:3000/api/adoptantes/23
 Content-Type: application/json
 
 {
-    "nombre": "UPDATE",
-    "apellidos": "UPDATE",
-    "direccion": "UPDATE 4",
-    "email": "UPDATE@mail.com",
+    "nombre": "nuevousuario",
+    "apellidos": "nuevousuario",
+    "direccion": "nuevousuario 4",
+    "email": "nuevousuario@mail.com",
     "telefono": 898767545,
-    "localidad": "UPDATE",
+    "localidad": "nuevousuario",
     "provincia": "Madrid",
     "tiene_gato": "no",
     "espacio_exterior": "si",
@@ -46,8 +46,8 @@ POST http://localhost:3000/api/adoptantes/login
 Content-Type: application/json
 
 {
-    "password": "Prueba1",
-    "email": "pruebamiddleware@mail.com"
+    "password": "Nuevo1",
+    "email": "nuevousuario@mail.com"
 }
 
 ###
