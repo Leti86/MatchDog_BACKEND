@@ -15,7 +15,8 @@ Content-Type: application/json
     "tipo_vivienda": "casa/chalet",
     "tipo_espacio_exterior": "patio",
     "fotos_casa": "https://i.ytimg.com/vi/SsdNJTN_mZI/maxresdefault.jpg",
-    "password": 654321
+    "password": "654321",
+    "rol":"adoptante"
 }
 
 ###
