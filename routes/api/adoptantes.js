@@ -1,9 +1,10 @@
 const router = require('express').Router();
 const bcrypt = require('bcryptjs'); //estamos requiriendo la librería que hemos instalado
 const jwt = require('jsonwebtoken');
+const { getToken } = require('../middleware');
 const dayjs = require('dayjs');
 
-const { createAdoptante, getAll, getByIdAdopter, getByEmailAdopter, updateById, deleteByIDAdopter } = require('../../models/adoptante');
+const { createAdoptante, getAll, getByIdAdopter, getByEmailAdopter, updateById, deleteByIDAdopter, getFavouriteDogs } = require('../../models/adoptante');
 
 
 
@@ -36,6 +37,30 @@ router.get('/', async (req, res) => {
     }
 });
 
+//recuperamos los datos de perfil del adoptante
+router.get('/perfil', getToken, async (req, res) => {
+    try {
+        console.log(req.adoptanteId);
+        const id = await getByIdAdopter(req.adoptanteId);
+        res.json(id);
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
+//recuperamos los perros favoritos del adoptante
+router.get('/:IdAdoptante/perrosfavoritos', async (req, res) => {
+    try {
+        const IdAdoptante = req.params.IdAdoptante;
+        const perrosFavoritos = await getFavouriteDogs(IdAdoptante);
+        res.json(perrosFavoritos);
+
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
+
 // Recupero datos por Id adoptante
 router.get('/:IdAdoptante', async (req, res) => {
     try {
@@ -46,10 +71,6 @@ router.get('/:IdAdoptante', async (req, res) => {
         res.json({ error: error.message })
     }
 });
-
-
-
-
 
 
 
@@ -129,5 +150,8 @@ function createToken(pAdoptante) {
     }
     return jwt.sign(obj, process.env.SECRET_KEY);
 };
+
+
+
 
 module.exports = router;
