@@ -47,8 +47,8 @@ POST http://localhost:3000/api/adoptantes/login
 Content-Type: application/json
 
 {
-    "password": "Nuevo1",
-    "email": "nuevousuario@mail.com"
+    "password": "Leti1",
+    "email": "leti@mail.com"
 }
 
 ###
@@ -63,4 +63,13 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG9wdGFudGVJZCI6MjMsImNh
 
 ###
 
-GET  http://localhost:3000/api/adoptantes/3/perrosfavoritos
+GET  http://localhost:3000/api/adoptantes/perrosfavoritos
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG9wdGFudGVJZCI6MzEsImNhZHVjaWRhZCI6MTYwODEzMDQ5OCwiaWF0IjoxNjA4MTI5ODk4fQ.jBEaETJvJjQ52o5g0zLoQqh7nGntB6Q2mgqzUWxmXFI
+
+
+###
+GET  http://localhost:3000/api/adoptantes/perrosfavoritos/borrar/19
+
+
+
+

@@ -4,7 +4,7 @@ const jwt = require('jsonwebtoken');
 const { getToken } = require('../middleware');
 const dayjs = require('dayjs');
 
-const { createAdoptante, getAll, getByIdAdopter, getByEmailAdopter, updateById, deleteByIDAdopter, getFavouriteDogs } = require('../../models/adoptante');
+const { createAdoptante, getAll, getByIdAdopter, getByEmailAdopter, updateById, deleteByIDAdopter, getFavouriteDogs, eliminarPerroListaFavoritos } = require('../../models/adoptante');
 
 
 
@@ -49,9 +49,9 @@ router.get('/perfil', getToken, async (req, res) => {
 })
 
 //recuperamos los perros favoritos del adoptante
-router.get('/:IdAdoptante/perrosfavoritos', async (req, res) => {
+router.get('/perrosfavoritos', getToken, async (req, res) => {
     try {
-        const IdAdoptante = req.params.IdAdoptante;
+        const IdAdoptante = req.adoptanteId;
         const perrosFavoritos = await getFavouriteDogs(IdAdoptante);
         res.json(perrosFavoritos);
 
@@ -99,6 +99,22 @@ router.get('/borrar/:IdAdoptante', async (req, res) => {
 
 });
 
+//Eliminamos perros de lista favoritos
+router.get('/perrosfavoritos/borrar/:IdPerro', async (req, res) => {
+    try {
+        const IdPerro = req.params.IdPerro;
+        const result = await eliminarPerroListaFavoritos(IdPerro);
+        if (result.affectedRows === 1) {
+            res.json({ mensaje: 'Se ha borrado correctamente' });
+        } else {
+            res.json({ error: 'No se ha podido borrar' });
+        }
+
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+});
+
 
 // Modificamos datos del adoptante
 router.post('/update', async (req, res) => {
@@ -142,6 +158,11 @@ router.post('/login', async (req, res) => {
     }
 });
 
+
+
+
+
+
 //función de creación de token
 function createToken(pAdoptante) {
     const obj = {
@@ -150,6 +171,9 @@ function createToken(pAdoptante) {
     }
     return jwt.sign(obj, process.env.SECRET_KEY);
 };
+
+
+
 
 
 

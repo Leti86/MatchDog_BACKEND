@@ -58,7 +58,7 @@ const getByEmailAdopter = (pEmailAdoptante) => {
 const getFavouriteDogs = (pIdAdoptante) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'SELECT p.nombre_perro, p.edad, p.tamano, p.imagen FROM protectora.favoritos as f INNER JOIN protectora.perros AS p ON p.id=f.id_perro INNER JOIN protectora.adoptantes AS a ON a.id=f.id_adoptante WHERE f.id_adoptante=?',
+            'SELECT p.nombre_perro, p.edad, p.tamano, p.imagen, f.id as idFavorito FROM protectora.favoritos as f INNER JOIN protectora.perros AS p ON p.id=f.id_perro INNER JOIN protectora.adoptantes AS a ON a.id=f.id_adoptante WHERE f.id_adoptante=?',
             [pIdAdoptante],
             (error, rows) => {
                 if (error) reject(error);
@@ -102,11 +102,27 @@ const updateById = (pIdAdoptante, { nombre, apellidos, direccion, email, telefon
     });
 };
 
+// Eliminar perros de la lista de favoritos
+const eliminarPerroListaFavoritos = (pIdFavoritos) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'DELETE FROM protectora.favoritos WHERE favoritos.id=?',
+            [pIdFavoritos],
+            (error, result) => {
+                if (error) reject(error);
+                resolve(result)
+
+            }
+        )
+    });
+
+};
+
 
 
 
 
 
 module.exports = {
-    createAdoptante, getAll, getByIdAdopter, getByEmailAdopter, getFavouriteDogs, deleteByIDAdopter, updateById
+    createAdoptante, getAll, getByIdAdopter, getByEmailAdopter, getFavouriteDogs, deleteByIDAdopter, updateById, eliminarPerroListaFavoritos
 };
