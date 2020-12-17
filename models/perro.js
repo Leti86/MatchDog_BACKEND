@@ -27,7 +27,7 @@ const getByIdDog = (perroId) => {
 //primer filtro: obtiene los perros por edad: adulto o cachorro
 const getByAgeDog = (edadPerro) => {
     return new Promise((resolve, reject) => {
-        db.query('select p.nombre_perro, p.raza, p.edad_numero, p.sexo, p.imagen, lp.nombre, lp.provincia, lp.localidad from protectora.perros as p, protectora.lista_protectoras as lp where p.fk_protectora = lp.id and edad=?', [edadPerro], (error, rows) => {
+        db.query('select p.id, p.nombre_perro, p.raza, p.edad_numero, p.sexo, p.imagen, lp.nombre, lp.provincia, lp.localidad from protectora.perros as p, protectora.lista_protectoras as lp where p.fk_protectora = lp.id and edad=?', [edadPerro], (error, rows) => {
             if (error) reject(error);
             resolve(rows);
         });
@@ -38,7 +38,7 @@ const getByAgeDog = (edadPerro) => {
 //segundo filtro, depende del primero: obtiene los perros por tamaño: pequeño, mediano, grande
 const getBySizeDog = (tamanoPerro) => {
     return new Promise((resolve, reject) => {
-        db.query('select p.nombre_perro, p.raza, p.edad_numero, p.sexo, p.imagen, lp.nombre, lp.provincia, lp.localidad from protectora.perros as p, protectora.lista_protectoras as lp where p.fk_protectora = lp.id and tamano=?', [tamanoPerro], (error, rows) => {
+        db.query('select p.id, p.nombre_perro, p.raza, p.edad_numero, p.sexo, p.imagen, lp.nombre, lp.provincia, lp.localidad from protectora.perros as p, protectora.lista_protectoras as lp where p.fk_protectora = lp.id and tamano=?', [tamanoPerro], (error, rows) => {
             if (error) reject(error);
             resolve(rows);
         });
@@ -47,7 +47,7 @@ const getBySizeDog = (tamanoPerro) => {
 
 const getByAgeAndSizeDog = (edadPerro, tamanoPerro) => {
     return new Promise((resolve, reject) => {
-        db.query('select p.nombre_perro, p.raza, p.edad_numero, p.sexo, p.imagen, lp.nombre, lp.provincia, lp.localidad from protectora.perros as p, protectora.lista_protectoras as lp where p.fk_protectora = lp.id and edad=? and tamano=?',
+        db.query('select p.id, p.nombre_perro, p.raza, p.edad_numero, p.sexo, p.imagen, lp.nombre, lp.provincia, lp.localidad from protectora.perros as p, protectora.lista_protectoras as lp where p.fk_protectora = lp.id and edad=? and tamano=?',
             [edadPerro, tamanoPerro],
             (error, rows) => {
                 if (error) reject(error);

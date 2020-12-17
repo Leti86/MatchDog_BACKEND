@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const { getToken } = require('../middleware');
 
 const { getAllDog, getByIdDog, getByAgeDog, getBySizeDog, createDog, deleteByIdDog, updateByIdDog, getByAgeAndSizeDog, addDogsFavorites } = require('../../models/perro');
 
@@ -84,11 +85,11 @@ router.post('/crear', [
 });
 
 // Añadimos un nuvo perro a la lista favoritos
-router.get('/add/favoritos/:IdPerro/:IdAdoptante', async (req, res) => {
+router.get('/add/favoritos/:IdPerro', getToken, async (req, res) => {
     try {
         const id_perro = req.params.IdPerro;
         //console.log(id_perro);
-        const id_adoptante = req.params.IdAdoptante;
+        const id_adoptante = req.adoptanteId;
         //console.log(id_adoptante);
         const perroFavorito = await addDogsFavorites(id_perro, id_adoptante);
         res.json(perroFavorito);
