@@ -73,7 +73,7 @@ const createDog = ({ raza, edad, tamano, edad_numero, sexo, apto_gatos, leishman
 
 
 // añadir perros en la tabla favoritos
-const addDogsFavorites = ({ id_perro, id_adoptante }) => {
+const addDogsFavorites = (id_perro, id_adoptante) => {
     return new Promise((resolve, reject) => {
         db.query(
             'insert into protectora.favoritos (id_perro, id_adoptante) values (?, ?)',
