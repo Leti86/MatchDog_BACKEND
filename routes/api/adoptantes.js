@@ -75,11 +75,11 @@ router.get('/:IdAdoptante', async (req, res) => {
 
 
 // Editamos un adoptante
-router.get('/edita/:IdAdoptante', async (req, res) => {
+router.get('/edita/', getToken, async (req, res) => {
     try {
-        const IdAdoptante = req.params.IdAdoptante;
+        const IdAdoptante = req.adoptanteId;
         const adoptante = await getByIdAdopter(IdAdoptante);
-        res.render('adoptantes/formEdit', { adoptante });
+        res.json(adoptante);
     } catch (error) {
         res.json({ error: error.message })
     }
@@ -117,14 +117,15 @@ router.get('/perrosfavoritos/borrar/:IdPerro', async (req, res) => {
 
 
 // Modificamos datos del adoptante
-router.post('/update', async (req, res) => {
+router.post('/update', getToken, async (req, res) => {
     try {
-        //console.log(req.body);
-        const result = await updateById(req.body.IdAdoptante, req.body);
-        console.log(result);
-        res.redirect('/api/adoptantes');
+        console.log(req.body);
+        const result = await updateById(req.adoptanteId, req.body);
+
+        res.json(result)
     } catch (error) {
-        res.json({ error: error.message })
+        res.json({ error: error.message });
+
     }
 
 });

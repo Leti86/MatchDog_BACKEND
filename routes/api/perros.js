@@ -84,14 +84,14 @@ router.post('/crear', [
 });
 
 // Añadimos un nuvo perro a la lista favoritos
-router.post('/add/favoritos/:IdPerro/:IdAdoptante', async (req, res) => {
+router.get('/add/favoritos/:IdPerro/:IdAdoptante', async (req, res) => {
     try {
         const id_perro = req.params.IdPerro;
         //console.log(id_perro);
         const id_adoptante = req.params.IdAdoptante;
         //console.log(id_adoptante);
         const perroFavorito = await addDogsFavorites(id_perro, id_adoptante);
-        console.log(perroFavorito);
+        res.json(perroFavorito);
     } catch (error) {
         res.json({ error: error.message })
     }
