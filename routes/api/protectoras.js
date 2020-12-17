@@ -5,7 +5,7 @@ const dayjs = require('dayjs');
 
 const { getTokenProtectora } = require('../middleware');
 
-const { getAll, create, getById, getByEmailProtectora, getByNeedForVolunteers, getByDogProtectora, updateById, deleteById, getCoord } = require('../../models/protectora');
+const { getAll, create, getById, getByEmailProtectora, getByNeedForVolunteers, getByDogProtectora, updateById, deleteById, getCoord, getTableData } = require('../../models/protectora');
 
 // Recupero todas las protectoras
 router.get('/', async (req, res) => {
@@ -20,15 +20,31 @@ router.get('/', async (req, res) => {
 
 //recuperamos el perfil de la protectora (para vistaprotectora en el front)
 router.get('/perfil', getTokenProtectora, async (req, res) => {
-    console.log(req.protectoraId);
+    // console.log(req.protectoraId);
     try {
-        console.log(req.protectoraId);
+        // console.log(req.protectoraId);
         const id = await getById(req.protectoraId);
         res.json(id);
     } catch (error) {
         res.json({ error: error.message })
     }
-})
+});
+
+
+//Recuperamos los datos de la tabla de vistaprotectora
+router.get('/datatable', getTokenProtectora, async (req, res) => {
+    console.log(req.protectoraId);
+    try {
+        const datosTabla = await getTableData(req.protectoraId);
+        res.json(datosTabla);
+
+    } catch (error) {
+        res.json({
+            error: error.message
+        })
+    }
+});
+
 
 // Recupero datos por ID protectora
 router.get('/:IdProtectora', async (req, res) => {
@@ -83,6 +99,8 @@ router.get('/coordenadas/coordenadas', async (req, res) => {
         })
     }
 });
+
+
 
 
 

@@ -49,3 +49,7 @@ Content-Type: application/json
     "password": "Enc1",
     "email": "enc1@mail.com"
 }
+
+###
+GET http://localhost:3000/api/protectoras/datatable
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm90ZWN0b3JhSWQiOjIwLCJjYWR1Y2lkYWQiOjE2MDgyMjM2MTYsImlhdCI6MTYwODIyMzAxNn0.KM1NgXK6pOfW698vp8skm03LyWZAgKbsvEtmc-St2C4
