@@ -22,6 +22,8 @@ const getByIdDog = (perroId) => {
 
 
 
+
+
 //primer filtro: obtiene los perros por edad: adulto o cachorro
 const getByAgeDog = (edadPerro) => {
     return new Promise((resolve, reject) => {
@@ -70,6 +72,23 @@ const createDog = ({ raza, edad, tamano, edad_numero, sexo, apto_gatos, leishman
 };
 
 
+// añadir perros en la tabla favoritos
+const addDogsFavorites = ({ id_perro, id_adoptante }) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'insert into protectora.favoritos (id_perro, id_adoptante) values (?, ?)',
+            [id_perro, id_adoptante],
+            (error, result) => {
+                if (error) reject(error);
+                resolve(result);
+            }
+        )
+    });
+
+
+};
+
+
 
 //actualizar por id funciona??
 const updateByIdDog = (idPerro, { raza, edad, tamano, edad_numero, sexo, apto_gatos, leishmania, localizacion, descripcion, imagen, nombre_perro, fk_protectora }) => {
@@ -95,6 +114,6 @@ const deleteByIdDog = (idPerro) => {
 
 
 module.exports = {
-    getAllDog, getByIdDog, getByAgeDog, getBySizeDog, createDog, deleteByIdDog, updateByIdDog, getByAgeAndSizeDog
+    getAllDog, getByIdDog, getByAgeDog, getBySizeDog, createDog, deleteByIdDog, updateByIdDog, getByAgeAndSizeDog, addDogsFavorites
 }
 

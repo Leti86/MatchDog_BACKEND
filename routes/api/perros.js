@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { getAllDog, getByIdDog, getByAgeDog, getBySizeDog, createDog, deleteByIdDog, updateByIdDog, getByAgeAndSizeDog } = require('../../models/perro');
+const { getAllDog, getByIdDog, getByAgeDog, getBySizeDog, createDog, deleteByIdDog, updateByIdDog, getByAgeAndSizeDog, addDogsFavorites } = require('../../models/perro');
 
 
 
@@ -22,7 +22,7 @@ router.get('/:idPerro', async (req, res) => {
         const idPerro = req.params.idPerro;
         const perro = await getByIdDog(idPerro);
         // res.json(perro) aquí me devuelve correctamente la info del perro, por qué luego no me deja imprimirla en la vista?
-        res.render('perros/vistaperro', { perro });
+        res.json(perro);
     } catch (error) {
         res.json({ error: error.message })
     }
@@ -82,6 +82,22 @@ router.post('/crear', [
     }
 
 });
+
+// Añadimos un nuvo perro a la lista favoritos
+router.post('/add/favoritos/:IdPerro/:IdAdoptante', async (req, res) => {
+    try {
+        const id_perro = req.params.IdPerro;
+        //console.log(id_perro);
+        const id_adoptante = req.params.IdAdoptante;
+        //console.log(id_adoptante);
+        const perroFavorito = await addDogsFavorites(id_perro, id_adoptante);
+        console.log(perroFavorito);
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+});
+
+
 
 
 
