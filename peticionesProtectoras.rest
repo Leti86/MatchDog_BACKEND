@@ -5,18 +5,18 @@ POST http://localhost:3000/api/protectoras
 Content-Type: application/json
 
 {
-    "nombre": "leti",
-    "email": "leti",
-    "telefono": 1,
-    "direccion": "leti",
-    "localidad": "leti",
-    "provincia": "leti",
-    "latitud": 1,
-    "longitud": 1,
+    "nombre": "proteprueba5",
+    "email": "proteprueba5",
+    "telefono": 1777777,
+    "direccion": "proteprueba5",
+    "localidad": "proteprueba5",
+    "provincia": "Madrid",
+    "latitud": "proteprueba5",
+    "longitud": "proteprueba5",
     "necesidad_voluntarios": "alta",
-    "imagen": "leti",
-    "comentarios": "leti",
-    "password_protectora": 1234
+    "imagen": "proteprueba5",
+    "comentarios": "proteprueba3proteprueba3proteprueba3proteprueba3proteprueba3proteprueba3",
+    "password_protectora": "Prote5"
 
 }
 
@@ -36,3 +36,12 @@ GET http://localhost:3000/api/protectoras/borrar/8
 
 ###
 GET http://localhost:3000/api/protectoras/coordenadas/coordenadas
+
+###
+POST http://localhost:3000/api/protectoras/login
+Content-Type: application/json
+
+{
+    "password": "Enc1",
+    "email": "enc1@mail.com"
+}

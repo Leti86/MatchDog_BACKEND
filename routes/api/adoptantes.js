@@ -20,7 +20,7 @@ router.post('/crear', [
         } else {
             res.json({ error: 'No se ha podido insertar el adoptante.' })
         }
-        res.json(result);
+
 
     } catch (error) {
         res.json({ error: error.message })

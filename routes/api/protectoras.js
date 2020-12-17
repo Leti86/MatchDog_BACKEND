@@ -1,4 +1,10 @@
 const router = require('express').Router();
+const bcrypt = require('bcryptjs'); //estamos requiriendo la librería que hemos instalado
+const jwt = require('jsonwebtoken');
+const dayjs = require('dayjs');
+
+const { getToken } = require('../middleware');
+
 const { getAll, create, getById, getByEmailProtectora, getByNeedForVolunteers, getByDogProtectora, updateById, deleteById, getCoord } = require('../../models/protectora');
 
 // Recupero todas las protectoras
@@ -121,14 +127,60 @@ router.post('/update', async (req, res) => {
 // Creo una protectora 
 router.post('/', async (req, res) => {
     try {
+        req.body.password_protectora = bcrypt.hashSync(req.body.password_protectora, 10);
         const result = await create(req.body);
-        res.json(result);
+        if (result.affectedRows === 1) {
+            res.json({ message: 'La protectora se ha incluido en la base de datos.' });
+        } else {
+            res.json({ error: 'No se ha podido insertar la protectora.' })
+        }
+
     } catch (error) {
         res.json({
             error: error.message
         })
     }
 });
+
+
+//A PARTIR DE AQUÍ: RUTAS Y MÉTODOS DEL LOGIN
+// ruta para que la protectora haga login y obtenga su token
+router.post('/login', async (req, res) => {
+    const { email, password } = req.body;
+    console.log(req.body);
+
+    try {
+        const protectora = await getByEmailProtectora(email);
+        if (!protectora) {
+            return res.json({ error: 'Error en email y/o contraseña1' });
+        }
+        const iguales = bcrypt.compareSync(password, protectora.password_protectora);
+        console.log(iguales);
+
+
+        if (!iguales) {
+            return res.json({ error: 'Error en email y/o contraseña2' });
+        }
+        res.json({
+            success: 'Login correcto',
+            token: createToken(protectora)
+        })
+
+    } catch (error) {
+        res.json({ error: error.message });
+    }
+});
+
+
+
+//función de creación de token
+function createToken(pProtectora) {
+    const obj = {
+        protectoraId: pProtectora.id,
+        caducidad: dayjs().add(10, 'minute').unix()
+    }
+    return jwt.sign(obj, process.env.SECRET_KEY);
+};
 
 
 
