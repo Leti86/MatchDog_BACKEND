@@ -38,6 +38,10 @@ GET http://localhost:3000/api/protectoras/borrar/8
 GET http://localhost:3000/api/protectoras/coordenadas/coordenadas
 
 ###
+GET http://localhost:3000/api/protectoras/perfil
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm90ZWN0b3JhSWQiOjE5LCJjYWR1Y2lkYWQiOjE2MDgyMDU4NDQsImlhdCI6MTYwODIwNTI0NH0.cd2YtRv-zmaP0zFxlOaAjJYOwBU5lFDbFW1k8CeJaFQ
+
+###
 POST http://localhost:3000/api/protectoras/login
 Content-Type: application/json
 

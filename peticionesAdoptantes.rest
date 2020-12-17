@@ -59,7 +59,7 @@ Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG9wdGFudGVJZCI6MjMsImNh
 ###
 
 GET http://localhost:3000/api/adoptantes/perfil
-Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG9wdGFudGVJZCI6MjMsImNhZHVjaWRhZCI6MTYwNzg3ODI3MywiaWF0IjoxNjA3ODc3NjczfQ.-XoI63--45XdXMvKhxS87PBrwC_5wza9F5kPrU4YPIw
+Authorization: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhZG9wdGFudGVJZCI6MzEsImNhZHVjaWRhZCI6MTYwODIwMzg1MiwiaWF0IjoxNjA4MjAzMjUyfQ.AJ0XPdJUldajtEyjCZ2UVByTLMMgqbDio4nlnQmrzTY
 
 ###
 

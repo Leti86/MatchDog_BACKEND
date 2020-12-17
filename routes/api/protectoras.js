@@ -3,7 +3,7 @@ const bcrypt = require('bcryptjs'); //estamos requiriendo la librería que hemos
 const jwt = require('jsonwebtoken');
 const dayjs = require('dayjs');
 
-const { getToken } = require('../middleware');
+const { getTokenProtectora } = require('../middleware');
 
 const { getAll, create, getById, getByEmailProtectora, getByNeedForVolunteers, getByDogProtectora, updateById, deleteById, getCoord } = require('../../models/protectora');
 
@@ -18,18 +18,27 @@ router.get('/', async (req, res) => {
     }
 });
 
+//recuperamos el perfil de la protectora (para vistaprotectora en el front)
+router.get('/perfil', getTokenProtectora, async (req, res) => {
+    console.log(req.protectoraId);
+    try {
+        console.log(req.protectoraId);
+        const id = await getById(req.protectoraId);
+        res.json(id);
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
 // Recupero datos por ID protectora
 router.get('/:IdProtectora', async (req, res) => {
     try {
         const IdProtectora = req.params.IdProtectora;
         const protectora = await getById(IdProtectora);
-        res.render('protectoras/detalleProtectora', { protectora });
+        res.json(protectora);
     } catch (error) {
-        res.json({
-            error: error.message
-        })
+        res.json({ error: error.message })
     }
-
 });
 
 
@@ -74,6 +83,8 @@ router.get('/coordenadas/coordenadas', async (req, res) => {
         })
     }
 });
+
+
 
 
 // Editamos una protectora 

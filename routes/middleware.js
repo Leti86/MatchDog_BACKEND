@@ -49,6 +49,13 @@ const getToken = async (req, res, next) => {
     next();
 }
 
+const getTokenProtectora = async (req, res, next) => {
+    const token = req.headers.authorization;
+    const obj = jwt.decode(token, process.env.SECRET_KEY);
+    req.protectoraId = obj.protectoraId;
+    next();
+}
+
 module.exports = {
-    getToken
+    getToken, getTokenProtectora
 }
