@@ -108,7 +108,7 @@ const getCoord = () => {
 const getTableData = (pIdProtectora) => {
     return new Promise((resolve, reject) => {
         db.query(
-            "select p.id as 'id_del_perro', p.nombre_perro, a.nombre as 'nombre_adoptante', a.telefono, a.localidad, a.email, (select count(id_perro) from  favoritos where id_perro =f.id_perro) as 'adoptantes_interesados' from protectora.favoritos as f inner join protectora.perros as p on p.id = f.id_perro inner join protectora.adoptantes as a on a.id = f.id_adoptante where p.fk_protectora = ?",
+            "select f.id as 'id_tabla_favorito', p.id as 'id_del_perro', p.nombre_perro, a.nombre as 'nombre_adoptante', a.telefono, a.localidad, a.email, (select count(id_perro) from  favoritos where id_perro =f.id_perro) as 'adoptantes_interesados' from protectora.favoritos as f inner join protectora.perros as p on p.id = f.id_perro inner join protectora.adoptantes as a on a.id = f.id_adoptante where p.fk_protectora = ?",
             [pIdProtectora],
             (error, rows) => {
                 if (error) reject(error);
@@ -135,6 +135,20 @@ const deleteById = (pIdProtectora) => {
     });
 };
 
+// Eliminamos perro_adoptante de la tabla favoritos
+const deleteByFavoriteRelation = (pIdFavorito) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'DELETE FROM protectora.favoritos WHERE favoritos.id= ?',
+            [pIdFavorito],
+            (error, result) => {
+                if (error) reject(error);
+                resolve(result)
+            }
+        )
+    });
+};
+
 
 // Modificamos datos de una protectora
 const updateById = (pIdProtectora, { nombre, email, telefono, direccion, localidad, provincia, latitud, longitud, necesidad_voluntarios, imagen, comentarios, password_protectora }) => {
@@ -153,5 +167,5 @@ const updateById = (pIdProtectora, { nombre, email, telefono, direccion, localid
 
 
 module.exports = {
-    getAll, create, getById, getByEmailProtectora, deleteById, updateById, getByNeedForVolunteers, getByDogProtectora, getCoord, getTableData
+    getAll, create, getById, getByEmailProtectora, deleteById, updateById, getByNeedForVolunteers, getByDogProtectora, getCoord, getTableData, deleteByFavoriteRelation
 };

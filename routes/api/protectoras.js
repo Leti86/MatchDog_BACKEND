@@ -5,7 +5,7 @@ const dayjs = require('dayjs');
 
 const { getTokenProtectora } = require('../middleware');
 
-const { getAll, create, getById, getByEmailProtectora, getByNeedForVolunteers, getByDogProtectora, updateById, deleteById, getCoord, getTableData } = require('../../models/protectora');
+const { getAll, create, getById, getByEmailProtectora, getByNeedForVolunteers, getByDogProtectora, updateById, deleteById, getCoord, getTableData, deleteByFavoriteRelation } = require('../../models/protectora');
 
 // Recupero todas las protectoras
 router.get('/', async (req, res) => {
@@ -45,6 +45,32 @@ router.get('/datatable', getTokenProtectora, async (req, res) => {
     }
 });
 
+// Borrar relacion perro_adoptante tabla favoritos
+router.get('/BorrarRelacion/:IdFavorito', async (req, res) => {
+    try {
+        const idTablaFavorito = req.params.IdFavorito;
+        const favoritoEliminado = await deleteByFavoriteRelation(idTablaFavorito);
+        res.json(favoritoEliminado);
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+});
+
+// Recupero los perros de cada protectora 
+router.get('/perrosProtectora', getTokenProtectora, async (req, res) => {
+    try {
+        const protectora = req.protectoraId;
+        const perrosProtectora = await getByDogProtectora(protectora);
+        res.json(perrosProtectora);
+    } catch (error) {
+        res.json({
+            error: error.message
+        })
+    }
+
+});
+
+
 
 // Recupero datos por ID protectora
 router.get('/:IdProtectora', async (req, res) => {
@@ -58,20 +84,7 @@ router.get('/:IdProtectora', async (req, res) => {
 });
 
 
-// Recupero los perros de cada protectora 
-router.get('/:IdProtectora/perros', async (req, res) => {
-    try {
-        const protectora = await getById(req.params.IdProtectora);
-        const rows = await getByDogProtectora(req.params.IdProtectora);
-        protectora.perros = rows;
-        res.json(protectora);
-    } catch (error) {
-        res.json({
-            error: error.message
-        })
-    }
 
-});
 
 
 

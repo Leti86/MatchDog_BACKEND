@@ -52,4 +52,8 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/protectoras/datatable
-Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm90ZWN0b3JhSWQiOjIwLCJjYWR1Y2lkYWQiOjE2MDgyMjM2MTYsImlhdCI6MTYwODIyMzAxNn0.KM1NgXK6pOfW698vp8skm03LyWZAgKbsvEtmc-St2C4
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm90ZWN0b3JhSWQiOjE0LCJjYWR1Y2lkYWQiOjE2MDgyODAyNjUsImlhdCI6MTYwODI3OTY2NX0.enzwa4_kuCGYg5QgyqpVHBI03EWzWlOUwA0BV0LRtec
+
+
+###
+GET http://localhost:3000/api/protectoras/BorrarRelacion/24
