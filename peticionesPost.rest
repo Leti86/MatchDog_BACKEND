@@ -18,6 +18,9 @@ GET http://localhost:3000/api/posts/titulo/2
 GET http://localhost:3000/api/posts/palabra/espigas
 
 
+###
+GET http://localhost:3000/api/posts/pagina/2
+
 
 
 

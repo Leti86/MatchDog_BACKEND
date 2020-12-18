@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 
-const { getAllPosts, getByCategory, getPostByDate, countPost, getPostTitle, getPostByWord } = require('../../models/post');
+const { getAllPosts, getByCategory, getPostByDate, countPost, getPostTitle, getPostByWord, getByPage } = require('../../models/post');
 
 // Recupero todos los posts
 router.get('/', async (req, res) => {
@@ -14,6 +14,17 @@ router.get('/', async (req, res) => {
         })
     }
 });
+
+//recuperamos 3 post cada vez
+router.get('/pagina/:numPagina', async (req, res) => {
+    try {
+        const rows = await getByPage(req.params.numPagina)
+        res.json(rows);
+    } catch (error) {
+        res.json({ error: error.message })
+    }
+})
+
 
 // Recupero por categoria
 router.get('/:categoria', async (req, res) => {
