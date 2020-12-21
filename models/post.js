@@ -89,7 +89,7 @@ const getPostTitle = (pId) => {
 }
 
 
-// Recupero Post por palabra que contenga (buscador) //! revisar
+// Recupero Post por palabra que contenga (buscador)
 const getPostByWord = (pPalabra) => {
     return new Promise((resolve, reject) => {
         db.query(

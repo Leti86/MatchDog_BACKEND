@@ -39,6 +39,22 @@ const getByIdAdopter = (pIdAdoptante) => {
     });
 };
 
+// Botones para lista favoritos
+/* const getByPage = (numPagina) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'SELECT * FROM protectora.posts LIMIT 3 OFFSET ?',
+            [(numPagina - 1) * 3],
+            (error, rows) => {
+                if (error) reject(error);
+                resolve(rows);
+            }
+        )
+    });
+} */
+
+
+
 //obtener el adoptante por su email de registro
 const getByEmailAdopter = (pEmailAdoptante) => {
     return new Promise((resolve, reject) => {
