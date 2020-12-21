@@ -12,6 +12,21 @@ const getAllPosts = () => {
     });
 };
 
+//seleccionamos 3 post
+const getByPage = (numPagina) => {
+    return new Promise((resolve, reject) => {
+        db.query(
+            'SELECT * FROM protectora.posts LIMIT 3 OFFSET ?',
+            [(numPagina - 1) * 3],
+            (error, rows) => {
+                if (error) reject(error);
+                resolve(rows);
+            }
+        )
+    });
+}
+
+
 // Filtro por categoria
 const getByCategory = (pCategory) => {
     return new Promise((resolve, reject) => {
@@ -93,5 +108,5 @@ const getPostByWord = (pPalabra) => {
 
 
 module.exports = {
-    getAllPosts, getByCategory, getPostByDate, countPost, getPostTitle, getPostByWord
+    getAllPosts, getByCategory, getPostByDate, countPost, getPostTitle, getPostByWord, getByPage
 };

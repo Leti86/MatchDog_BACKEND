@@ -58,7 +58,7 @@ const getByEmailAdopter = (pEmailAdoptante) => {
 const getFavouriteDogs = (pIdAdoptante) => {
     return new Promise((resolve, reject) => {
         db.query(
-            'SELECT p.nombre_perro, p.edad, p.tamano, p.imagen, f.id as idFavorito FROM protectora.favoritos as f INNER JOIN protectora.perros AS p ON p.id=f.id_perro INNER JOIN protectora.adoptantes AS a ON a.id=f.id_adoptante WHERE f.id_adoptante=?',
+            'SELECT p.id, p.nombre_perro, p.edad, p.tamano, p.imagen, f.id as idFavorito FROM protectora.favoritos as f INNER JOIN protectora.perros AS p ON p.id=f.id_perro INNER JOIN protectora.adoptantes AS a ON a.id=f.id_adoptante WHERE f.id_adoptante=?',
             [pIdAdoptante],
             (error, rows) => {
                 if (error) reject(error);
