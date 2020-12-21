@@ -1,6 +1,6 @@
 const router = require('express').Router();
 
-const { checkToken } = require('./middleware');
+// const { checkToken } = require('./middleware');
 
 const apiPerrosRouter = require('./api/perros');
 const apiProtectorasRouter = require('./api/protectoras');

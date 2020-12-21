@@ -90,7 +90,7 @@ const getByNeedForVolunteers = (pNecesidadVoluntarios) => {
     });
 };
 
-//Obtenemos la longitud y la latitud de cada protectora (para imprimir los markers en el mapa del front) FUNCIONA, NO TOCAR
+//Obtenemos la longitud y la latitud de cada protectora (para imprimir los markers en el mapa del front)
 const getCoord = () => {
     return new Promise((resolve, reject) => {
         db.query(

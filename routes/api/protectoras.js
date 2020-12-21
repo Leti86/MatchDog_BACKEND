@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const bcrypt = require('bcryptjs'); //estamos requiriendo la librería que hemos instalado
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const dayjs = require('dayjs');
 
@@ -20,9 +20,7 @@ router.get('/', async (req, res) => {
 
 //recuperamos el perfil de la protectora (para vistaprotectora en el front)
 router.get('/perfil', getTokenProtectora, async (req, res) => {
-    // console.log(req.protectoraId);
     try {
-        // console.log(req.protectoraId);
         const id = await getById(req.protectoraId);
         res.json(id);
     } catch (error) {
@@ -101,7 +99,7 @@ router.get('/necesidad/:necesidad', async (req, res) => {
     }
 });
 
-//Recupero la longitud y latitud de todas las protectoras (para imprimir los markers en el mapa) FUNCIONA, NO TOCAR
+//Recupero la longitud y latitud de todas las protectoras (para imprimir los markers en el mapa)
 router.get('/coordenadas/coordenadas', async (req, res) => {
     try {
         const coordenadas = await getCoord();
@@ -150,7 +148,6 @@ router.get('/borrar/:IdProtectora', async (req, res) => {
 // Modificamos datos de la protectrora
 router.post('/update', async (req, res) => {
     try {
-        //console.log(req.body);
         const result = await updateById(req.body.IdProtectora, req.body);
         console.log(result);
         res.redirect('/api/protectoras/' + req.body.IdProtectora);

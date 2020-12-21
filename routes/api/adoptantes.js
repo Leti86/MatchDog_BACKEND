@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const bcrypt = require('bcryptjs'); //estamos requiriendo la librería que hemos instalado
+const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { getToken } = require('../middleware');
 const dayjs = require('dayjs');
@@ -8,9 +8,8 @@ const { createAdoptante, getAll, getByIdAdopter, getByEmailAdopter, updateById, 
 
 
 
-//Crea un nuevo adoptante en la base de datos. FUNCIONA BIEN. ENCRIPTACIÓN DE CONTRASEÑA INCLUIDA
+//Crea un nuevo adoptante en la base de datos.
 router.post('/crear', [
-    //sin validadores
 ], async (req, res) => {
     try {
         req.body.password = bcrypt.hashSync(req.body.password, 10);

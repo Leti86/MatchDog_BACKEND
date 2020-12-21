@@ -42,7 +42,6 @@ router.get('/fecha/recientes', async (req, res) => {
     try {
         const postRecientes = await getPostByDate();
         res.json(postRecientes);
-        //console.log(postRecientes);
     } catch (error) {
         res.json({
             error: error.message
@@ -57,7 +56,6 @@ router.get('/fecha/recientes', async (req, res) => {
 router.get('/count/:categorias', async (req, res) => {
     try {
         const categoria = req.params.categorias;
-        //console.log(categoria);
         const cantidadPost = await countPost(categoria);
         res.json(cantidadPost)
     } catch (error) {

@@ -5,7 +5,7 @@ const { getAllDog, getByIdDog, getByAgeDog, getBySizeDog, createDog, deleteByIdD
 
 
 
-//PETICIÓN DE TODOS LOS PERROS. RENDERIZA LA VISTA LISTAPERROS. FUNCIONA BIEN
+//Obtenemos todos los perros
 router.get('/', async (req, res) => {
     try {
         const rows = await getAllDog();
@@ -16,13 +16,12 @@ router.get('/', async (req, res) => {
     }
 });
 
-//GET: PETICIÓN DE UN SOLO PERRO. RENDERIZA LA VISTA VISTAPERRO.!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-//PROBLEMA: RENDERIZA LA VISTA PERO NO ME IMPRIME LA INFO DEL PERRO. AYUDA PLIS!!
+
+//Obtenemos la info de un perro (por ID del perro)
 router.get('/:idPerro', async (req, res) => {
     try {
         const idPerro = req.params.idPerro;
         const perro = await getByIdDog(idPerro);
-        // res.json(perro) aquí me devuelve correctamente la info del perro, por qué luego no me deja imprimirla en la vista?
         res.json(perro);
     } catch (error) {
         res.json({ error: error.message })
@@ -32,7 +31,7 @@ router.get('/:idPerro', async (req, res) => {
 
 
 
-//GET: PETICIÓN POR EDAD (CACHORRO/ADULTO) FUNCIONA BIEN
+//Obtenemos un perro por edad (cachorro/adulto) Primer filtro
 router.get('/edad/:edad', async (req, res) => {
     try {
         const perrosFiltradosEdad = await getByAgeDog(req.params.edad);
@@ -43,7 +42,7 @@ router.get('/edad/:edad', async (req, res) => {
 });
 
 
-//GET: PETICIÓN POR TAMAÑO (PEQUENO, MEDIANO, GRANDE) FUNCIONA BIEN
+//Obtenemos un perro por tamaño (pequeño/mediano/grande) Segundo filtro
 router.get('/tamano/:tamano', async (req, res) => {
     const perrosFiltradosTamano = await getBySizeDog(req.params.tamano);
     res.json(perrosFiltradosTamano);
@@ -52,7 +51,7 @@ router.get('/tamano/:tamano', async (req, res) => {
 
 
 
-//GET: PETICIÓN POR EDAD Y TAMAÑO COMBINADOS FUNCIONA BIEN
+//Obtenemos un perro por edad y tamaño. Tercer filtro
 router.get('/:edad/:tamano', async (req, res) => {
     try {
         const perrosFiltro = await getByAgeAndSizeDog(req.params.edad, req.params.tamano);
@@ -64,9 +63,8 @@ router.get('/:edad/:tamano', async (req, res) => {
 
 
 
-//POST: CREAR UN NUEVO PERRO. FUNCIONA CORRECTAMENTE
+//Creamos un nuevo perro
 router.post('/crear', [
-    //sin validadores
 ], async (req, res) => {
     try {
         const result = await createDog(req.body);
@@ -88,9 +86,7 @@ router.post('/crear', [
 router.get('/add/favoritos/:IdPerro', getToken, async (req, res) => {
     try {
         const id_perro = req.params.IdPerro;
-        //console.log(id_perro);
         const id_adoptante = req.adoptanteId;
-        //console.log(id_adoptante);
         const perroFavorito = await addDogsFavorites(id_perro, id_adoptante);
         res.json(perroFavorito);
     } catch (error) {
@@ -102,7 +98,7 @@ router.get('/add/favoritos/:IdPerro', getToken, async (req, res) => {
 
 
 
-//PUT: EDITAR PERRO. FUNCIONA CORRECTAMENTE
+//Editamos un perro
 router.put('/editar/:idPerro', async (req, res) => {
     try {
         const result = await updateByIdDog(req.params.idPerro, req.body);
@@ -119,7 +115,7 @@ router.put('/editar/:idPerro', async (req, res) => {
 
 
 
-//DELETE: ELIMINA EL PERRO. FUNCIONA CORRECTAMENTE
+//Eliminamos un perro
 router.delete('/borrar/:idPerro', async (req, res) => {
     try {
         const result = await deleteByIdDog(req.params.idPerro);
