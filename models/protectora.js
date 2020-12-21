@@ -108,7 +108,7 @@ const getCoord = () => {
 const getTableData = (pIdProtectora) => {
     return new Promise((resolve, reject) => {
         db.query(
-            "select f.id as 'id_tabla_favorito', p.id as 'id_del_perro', p.nombre_perro, a.nombre as 'nombre_adoptante', a.telefono, a.localidad, a.email, (select count(id_perro) from  favoritos where id_perro =f.id_perro) as 'adoptantes_interesados' from protectora.favoritos as f inner join protectora.perros as p on p.id = f.id_perro inner join protectora.adoptantes as a on a.id = f.id_adoptante where p.fk_protectora = ?",
+            "select f.id as 'id_tabla_favorito', p.id as 'id_del_perro', p.nombre_perro, a.nombre as 'nombre_adoptante', a.telefono, a.localidad, a.email, a.id as 'id_adoptante', (select count(id_perro) from  favoritos where id_perro =f.id_perro) as 'adoptantes_interesados' from protectora.favoritos as f inner join protectora.perros as p on p.id = f.id_perro inner join protectora.adoptantes as a on a.id = f.id_adoptante where p.fk_protectora = ?",
             [pIdProtectora],
             (error, rows) => {
                 if (error) reject(error);

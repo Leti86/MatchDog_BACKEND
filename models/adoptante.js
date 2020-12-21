@@ -2,7 +2,7 @@
 //creamos un adoptante
 const createAdoptante = ({ nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password }) => {
     return new Promise((resolve, reject) => {
-        db.query('INSERT INTO protectora.adoptantes (nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password, rol) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password, 'ADOPTANTE'], (error, result) => {
+        db.query('INSERT INTO protectora.adoptantes (nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior, fotos_casa, password, rol) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)', [nombre, apellidos, direccion, email, telefono, localidad, provincia, tiene_gato, espacio_exterior, metros_exterior, tipo_vivienda, tipo_espacio_exterior ? tipo_espacio_exterior : null, fotos_casa, password, 'ADOPTANTE'], (error, result) => {
             if (error) reject(error);
             resolve(result);
         })
