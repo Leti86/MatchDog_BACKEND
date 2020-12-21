@@ -57,3 +57,10 @@ Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm90ZWN0b3JhSWQiOjE0LCJjY
 
 ###
 GET http://localhost:3000/api/protectoras/BorrarRelacion/24
+
+###
+GET http://localhost:3000/api/protectoras/perrosProtectora
+Authorization:eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwcm90ZWN0b3JhSWQiOjE0LCJjYWR1Y2lkYWQiOjE2MDgyODAyNjUsImlhdCI6MTYwODI3OTY2NX0.enzwa4_kuCGYg5QgyqpVHBI03EWzWlOUwA0BV0LRtec
+
+
+
